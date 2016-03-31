@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
+import EditClientApp from './edit-client-app';
 
 const Client = ({
 
@@ -18,6 +19,7 @@ const Client = ({
                     </button>
 
                 </div>
+                <EditClientApp/>
                 <div className="clearfix"></div>
             </div>
         </div>
