@@ -1,6 +1,10 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
-const UserProfile = (props) => {
+let UserProfile = ({
+    user,
+    children
+}) => {
     return (
         <div>
             <h3 className="text-info">User</h3>
@@ -17,7 +21,7 @@ const UserProfile = (props) => {
                     <span className="err-msg"></span>
                 </label>
                 <input className="form-control"/>
-                <div className="form-control-static"></div>
+                <div className="form-control-static">{user.firstname}</div>
             </div>
             <div className="form-group user-last-name">
                 <label className="control-label">Last Name
@@ -29,9 +33,17 @@ const UserProfile = (props) => {
 
             <hr/>
             <h3 className="text-info">Applications</h3>
-            {props.children}
+            {children}
         </div>
     );
 };
+
+const mapStateToProps = state => {
+    return {
+        user: state.accountManager.user
+    };
+}
+
+UserProfile = connect(mapStateToProps)(UserProfile);
 
 export default UserProfile;
