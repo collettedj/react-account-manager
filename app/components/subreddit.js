@@ -1,0 +1,41 @@
+import React from 'react';
+import {connect} from 'react-redux';
+import {ACTIONS} from '../actions/subreddit';
+import SubredditButtons from './subreddit-buttons';
+import {fetchPostsIfNeeded, invalidateSubreddit} from '../actions/subreddit';
+
+const mapStateToProps = (
+    state
+) => {
+    const {selectSubreddit, postsBySubreddit} = state;
+    const subredditObj = postsBySubreddit[selectSubreddit];
+    let items = subredditObj ? subredditObj.items : [];
+    return {
+        items
+    };
+};
+
+const mapDispatchToProps = (
+    dispatch
+) => {
+    return {
+        clickFetch: () => {
+            console.log("fetch");
+            dispatch(fetchPostsIfNeeded("reactjs"));
+        },
+
+        clickInvalidate: () => {
+            console.log("invalidate");
+            dispatch(invalidateSubreddit("reactjs"));
+        }
+    }
+};
+
+const Subreddit = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SubredditButtons);
+
+export default Subreddit;
+
+
