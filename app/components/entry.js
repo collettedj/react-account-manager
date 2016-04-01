@@ -1,5 +1,6 @@
 require('../style.scss');
 import 'babel-polyfill'
+import {compose} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
 
@@ -8,6 +9,7 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import {Router, Route, IndexRoute, hashHistory} from 'react-router';
+import DevTools from './dev-tools';
 
 import {fetchPostsIfNeeded} from '../actions/subreddit';
 
@@ -25,10 +27,13 @@ const crashReporter = store => next => action => {
 };
 
 const store = createStore(rootReducer,
-    applyMiddleware(
-        crashReporter,
-        thunkMiddleware,
-        loggerMiddleware)
+    compose(
+        applyMiddleware(
+            crashReporter,
+            thunkMiddleware,
+            loggerMiddleware),
+        DevTools.instrument(),
+    )
 );
 
 import Auth from '../utils/auth';
@@ -42,6 +47,7 @@ ReactDOM.render(
     <Provider store={store}>
         <div className="container">
             <AppRouter />
+            <DevTools/>
         </div>
     </Provider>,
     document.getElementById('content')
