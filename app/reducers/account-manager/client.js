@@ -5,6 +5,7 @@ const client = (state={
     switch(action.type){
         case ACTIONS.ADD_CLIENT:
             return {
+                id: action.id,
                 name: action.name,
                 description: action.description,
                 identifier: action.identifier,
