@@ -1,10 +1,10 @@
 import {combineReducers} from 'redux';
 import user from './user';
-import clients from './clients';
+import clientApp from './client-app';
 
 const accountManagerReducer = combineReducers({
     user,
-    clients
+    clientApp,
 });
 
 export default accountManagerReducer;
