@@ -31,18 +31,12 @@ let UserProfileIndex = ({
     toggleModal,
     addClient,
     setNewClientFields,
-    clearNewClientFields,
     children
 }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addClient({
-            name:"newapp",
-            descriptions:"description",
-            identifier:"the new id",
-            secret:"the new secret",
-        });
+        addClient(newClient);
     };
 
     const newClientNameChange = (e) => {
@@ -117,18 +111,17 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         toggleModal: () => {
-           dispatch(toggleOpen()); 
+            dispatch(toggleOpen()); 
+            dispatch(clearNewClientFields());
         },
         addClient: (client) => {
-           dispatch(addClient(client)); 
-           dispatch(toggleOpen());
+            dispatch(addClient(client)); 
+            dispatch(toggleOpen());
+            dispatch(clearNewClientFields());
         },
         setNewClientFields: (newClient) => {
             dispatch(setNewClientFields(newClient));
         },
-        clearNewClientFields: () => {
-            dispatch(clearNewClientFields());
-        }
     };
 };
 
