@@ -5,7 +5,11 @@ import Modal from 'react-modal';
 import EditClientApp from './edit-client-app';
 import ClientList from './client-list';
 import {addClient} from '../../actions/account-manager/client';
-import {toggleOpen} from '../../actions/account-manager/add-client-modal';
+import {
+    toggleOpen,
+    setNewClientFields,
+    clearNewClientFields,
+} from '../../actions/account-manager/add-client-modal';
 
 const customStyles = {
   content : {
@@ -22,9 +26,12 @@ const customStyles = {
 
 let UserProfileIndex = ({
     modalIsOpen,
+    newClient,
     clients,
     toggleModal,
     addClient,
+    setNewClientFields,
+    clearNewClientFields,
     children
 }) => {
 
@@ -36,6 +43,22 @@ let UserProfileIndex = ({
             identifier:"the new id",
             secret:"the new secret",
         });
+    };
+
+    const newClientNameChange = (e) => {
+        setNewClientFields({ name: e.target.value });
+    };
+    
+    const newClientDescriptionChange = (e) => {
+        setNewClientFields({ description: e.target.value });
+    };
+
+    const newClientIdentifierChange = (e) => {
+        setNewClientFields({ identifier: e.target.value });
+    };
+
+    const newClientSecretChange = (e) => {
+        setNewClientFields({ secret: e.target.value });
     };
 
     return (
@@ -63,7 +86,13 @@ let UserProfileIndex = ({
                         <form onSubmit={handleSubmit}>
                             <h3 className="text-info">New Client Application</h3>
                             <hr/>
-                                <EditClientApp/>
+                            <EditClientApp 
+                                client={newClient}
+                                onChangeName={newClientNameChange}
+                                onChangeDescription={newClientDescriptionChange}
+                                onChangeIdentifier={newClientIdentifierChange}
+                                onChangeSecret={newClientSecretChange}
+                            />
                             <hr/>
                             <div className="pull-right">
                                 <button className="btn btn-default btn-sm right10" type="submit" >Save</button>
@@ -81,6 +110,7 @@ const mapStateToProps = state => {
     return {
         modalIsOpen: state.accountManager.clientApp.addClientModal.isOpen,
         clients: state.accountManager.clientApp.clients,
+        newClient: state.accountManager.clientApp.addClientModal.newClient,
     };
 };
 
@@ -92,6 +122,12 @@ const mapDispatchToProps = dispatch => {
         addClient: (client) => {
            dispatch(addClient(client)); 
            dispatch(toggleOpen());
+        },
+        setNewClientFields: (newClient) => {
+            dispatch(setNewClientFields(newClient));
+        },
+        clearNewClientFields: () => {
+            dispatch(clearNewClientFields());
         }
     };
 };
