@@ -10,6 +10,12 @@ const client = (state={
                 description: action.description,
                 identifier: action.identifier,
                 secret: action.secret,
+                isEditing: false,
+            };
+        case ACTIONS.TOGGLE_CLIENT_EDITING:
+            return {
+                ...state,
+                isEditing: !state.isEditing,
             };
         default:
             return state;

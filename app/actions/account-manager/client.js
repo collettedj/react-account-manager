@@ -1,5 +1,6 @@
 export const ACTIONS = {
     ADD_CLIENT: "ADD_CLIENT",
+    TOGGLE_CLIENT_EDITING: "TOGGLE_CLIENT_EDITING",
 };
 
 let clientId = 0;
@@ -18,3 +19,10 @@ export const addClient = ({
         secret,
     };
 };
+
+export const toggleClientEditing = () => {
+    return {
+        type: ACTIONS.TOGGLE_CLIENT_EDITING,
+    };
+};
+

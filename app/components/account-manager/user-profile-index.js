@@ -82,6 +82,7 @@ let UserProfileIndex = ({
                             <hr/>
                             <EditClientApp 
                                 client={newClient}
+                                isEditing={true}
                                 onChangeName={newClientNameChange}
                                 onChangeDescription={newClientDescriptionChange}
                                 onChangeIdentifier={newClientIdentifierChange}

@@ -22,6 +22,7 @@ describe("account manager client redux tests", function(){
 
         const stateAfter = [{
             id:0,
+            isEditing:false,
             name:"name",
             description:"descripton",
             identifier:"identifier",
