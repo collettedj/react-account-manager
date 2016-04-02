@@ -47,7 +47,7 @@ ReactDOM.render(
     <Provider store={store}>
         <div className="container">
             <AppRouter />
-            <DevTools/>
+            <DevTools />
         </div>
     </Provider>,
     document.getElementById('content')

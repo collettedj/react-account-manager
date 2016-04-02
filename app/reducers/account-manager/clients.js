@@ -10,6 +10,8 @@ const clients = (state=[], action) => {
             ];
         case ACTIONS.TOGGLE_CLIENT_EDITING:
             return state.map(c => client(c, action));
+        case ACTIONS.SET_CLIENT_FIELDS:
+            return state.map(c => client(c, action));
         default:
             return state;
     };

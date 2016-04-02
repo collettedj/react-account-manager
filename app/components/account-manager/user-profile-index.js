@@ -34,8 +34,7 @@ let UserProfileIndex = ({
     children
 }) => {
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleSubmit = (newClient) => {
         addClient(newClient);
     };
 
@@ -54,6 +53,7 @@ let UserProfileIndex = ({
     const newClientSecretChange = (e) => {
         setNewClientFields({ secret: e.target.value });
     };
+
 
     return (
         <div>
@@ -77,25 +77,20 @@ let UserProfileIndex = ({
                 isOpen={modalIsOpen}
                 style={customStyles}>
                     <div className="client-modal">
-                        <form onSubmit={handleSubmit}>
-                            <h3 className="text-info">New Client Application</h3>
-                            <hr/>
-                            <EditClientApp 
-                                client={newClient}
-                                isEditing={true}
-                                onChangeName={newClientNameChange}
-                                onChangeDescription={newClientDescriptionChange}
-                                onChangeIdentifier={newClientIdentifierChange}
-                                onChangeSecret={newClientSecretChange}
-                            />
+                        <h3 className="text-info">New Client Application</h3>
+                        <hr/>
+                        <EditClientApp 
+                            client={newClient}
+                            isEditing={true}
+                            onSubmit={handleSubmit} >
                             <hr/>
                             <div className="pull-right">
                                 <button className="btn btn-default btn-sm right10" type="submit" >Save</button>
                                 <button className="btn btn-default btn-sm" type="button"
                                     onClick={toggleModal}>close</button>
                             </div>
-                        </form>
-                    </div>
+                        </EditClientApp>
+                </div>
                 </Modal>
         </div>
     );

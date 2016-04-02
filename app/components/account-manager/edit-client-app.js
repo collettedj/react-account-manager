@@ -1,57 +1,66 @@
 import React from 'react';
+import {reduxForm} from 'redux-form';
 
-const EditClientApp = ({
+let EditClientApp = ({
     client ,
     isEditing,
-    onChangeName,
-    onChangeDescription,
-    onChangeIdentifier,
-    onChangeSecret,
+    fields: {name, description, identifier, secret},
+    handleSubmit,
+    children,
 }) => {
-    const name = isEditing ?
-        <input className="form-control" value={client.name} onChange={onChangeName}/>:
+
+    const nameControl = isEditing ?
+        <input className="form-control" {...name}/>:
         <div className="form-control-static">{client.name}</div>;
 
-    const description = isEditing ?
-        <input className="form-control" value={client.description} onChange={onChangeDescription}/>:
+    const descriptionControl = isEditing ?
+        <input className="form-control" {...description}/>:
         <div className="form-control-static">{client.description}</div>;
 
-    const identifier = isEditing ?
-        <input className="form-control" value={client.identifier} onChange={onChangeIdentifier}/>:
+    const identifierControl = isEditing ?
+        <input className="form-control" {...identifier}/>:
         <div className="form-control-static">{client.identifier}</div>;
 
-    const secret = isEditing ?
-        <input className="form-control" value={client.secret} onChange={onChangeSecret}/>:
+    const secretControl = isEditing ?
+        <input className="form-control" {...secret}/>:
         <div className="form-control-static">{client.secret}</div>;
 
     return (
-        <div>
-            <div className="form-group client-name ">
-                <label className="control-label">Name
-                    <span className="err-msg"></span>
-                </label>
-                {name}
+        <form onSubmit={handleSubmit}>
+            <div>
+                <div className="form-group client-name ">
+                    <label className="control-label">Name
+                        <span className="err-msg"></span>
+                    </label>
+                    {nameControl}
+                </div>
+                <div className="form-group client-description ">
+                    <label className="control-label">Description
+                        <span className="err-msg"></span>
+                    </label>
+                    {descriptionControl}
+                </div>
+                <div className="form-group client-identifier ">
+                    <label className="control-label">Identifier
+                        <span className="err-msg"></span>
+                    </label>
+                    {identifierControl}
+                </div>
+                <div className="form-group client-secret ">
+                    <label className="control-label">Secret
+                        <span className="err-msg"></span>
+                    </label>
+                    {secretControl}
+                </div>
             </div>
-            <div className="form-group client-description ">
-                <label className="control-label">Description
-                    <span className="err-msg"></span>
-                </label>
-                {description}
-            </div>
-            <div className="form-group client-identifier ">
-                <label className="control-label">Identifier
-                    <span className="err-msg"></span>
-                </label>
-                {identifier}
-            </div>
-            <div className="form-group client-secret ">
-                <label className="control-label">Secret
-                    <span className="err-msg"></span>
-                </label>
-                {secret}
-            </div>
-        </div>
+            {children}
+        </form>
     );
 };
+
+EditClientApp = reduxForm({
+    form: 'Contact',
+    fields: ['name', 'description', 'identifier', 'secret'],
+})(EditClientApp);
 
 export default EditClientApp;

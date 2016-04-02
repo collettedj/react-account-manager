@@ -19,7 +19,7 @@ let Client = ({
                     <ToggleButton 
                         classNames="btn-xs" 
                         on={client.isEditing} 
-                        onToggle={toggleEditing}>
+                        onToggle={() => toggleEditing(client.id)}>
                         Edit
                     </ToggleButton>
                     {' '}
@@ -54,8 +54,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        toggleEditing: () =>{
-            dispatch(toggleClientEditing());
+        toggleEditing: (id) =>{
+            dispatch(toggleClientEditing(id));
         } 
     };
 };

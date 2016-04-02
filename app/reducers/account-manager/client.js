@@ -13,9 +13,17 @@ const client = (state={
                 isEditing: false,
             };
         case ACTIONS.TOGGLE_CLIENT_EDITING:
+            if(state.id === action.id){
+                return {
+                    ...state,
+                    isEditing: !state.isEditing,
+                };
+            }
+            return state;
+        case ACTIONS.SET_CLIENT_FIELDS:
             return {
                 ...state,
-                isEditing: !state.isEditing,
+                ...action.client,
             };
         default:
             return state;
