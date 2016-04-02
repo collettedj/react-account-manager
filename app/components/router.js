@@ -29,7 +29,7 @@ const AppRouter = ({
             <Route path="/account-manager/register" component={AccountManagerRegister}/>
             <Route path="/account-manager/user-profile" component={AccountManagerUserProfile}>
                 <IndexRoute component={AccountManagerUserProfileIndex}/>
-                <Route path="/account-manager/user-profile/client" component={AccountManagerClient}/>
+                <Route path="/account-manager/user-profile/client/:id" component={AccountManagerClient}/>
             </Route>
         </Route>
     </Router>

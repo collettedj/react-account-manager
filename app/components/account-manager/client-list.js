@@ -9,7 +9,7 @@ const ClientList = ({
             {clients.map(client => {
                 return (
                     <li className="list-group-item" key={client.id}>
-                        <Link to="/account-manager/user-profile/client/">
+                        <Link to={`/account-manager/user-profile/client/${client.id}`}>
                             {client.id}-{client.name}
                         </Link>
                     </li>

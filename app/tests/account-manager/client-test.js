@@ -21,6 +21,7 @@ describe("account manager client redux tests", function(){
         deepFreeze(action);
 
         const stateAfter = [{
+            id:0,
             name:"name",
             description:"descripton",
             identifier:"identifier",

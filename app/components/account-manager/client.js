@@ -1,10 +1,13 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import EditClientApp from './edit-client-app';
 
-const Client = ({
-
+let Client = ({
+    params,
+    clients
 }) => {
+    const client = clients.find(c => c.id.toString() === params.id);
     return (
         <div>
             <div>
@@ -19,11 +22,21 @@ const Client = ({
                     </button>
 
                 </div>
-                <EditClientApp/>
+                <EditClientApp client={client}/>
                 <div className="clearfix"></div>
             </div>
         </div>
     );
 };
+
+const mapStateToProps = state => {
+    return {
+        clients: state.accountManager.clientApp.clients
+    };
+};
+
+Client = connect(
+    mapStateToProps
+)(Client);
 
 export default Client;
