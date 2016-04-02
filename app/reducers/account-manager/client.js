@@ -21,9 +21,11 @@ const client = (state={
             }
             return state;
         case ACTIONS.SET_CLIENT_FIELDS:
-            return {
-                ...state,
-                ...action.client,
+            if(state.id === action.id){
+                return {
+                    ...state,
+                    ...action.client,
+                };
             };
         default:
             return state;

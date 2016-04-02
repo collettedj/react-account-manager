@@ -4,7 +4,11 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import EditClientApp from './edit-client-app';
 import ToggleButton from './toggle-button';
-import {toggleClientEditing, setCurrentClient} from '../../actions/account-manager/client';
+import {
+    toggleClientEditing, 
+    setCurrentClient,
+    setClientFields,
+} from '../../actions/account-manager/client';
 
 const EditExistingClientApp = reduxForm({
     form: 'Contact',
@@ -47,6 +51,7 @@ class ClientClass extends Component{
             isEditing,
             toggleEditing,
             setCurrentClient,
+            setClientFields,
         } = this.props;
 
         if(typeof(currentClientId) === "undefined" ||  params.id !== currentClientId.toString()){
@@ -73,7 +78,7 @@ class ClientClass extends Component{
                     </div>
                     <EditExistingClientApp 
                         isEditing={isEditing}
-                        onSubmit={() => console.log("submitted the form")} >
+                        onSubmit={(clientFields) => setClientFields(currentClientId,clientFields)} >
                         <hr/>
                         <button type="submit" className="btn btn-xs btn-success left5 pull-right save-client-btn" >
                             save
@@ -107,6 +112,10 @@ const mapDispatchToProps = dispatch => {
         setCurrentClient: id => {
             dispatch(setCurrentClient(id));
         },
+
+        setClientFields: (id,client) => {
+            dispatch(setClientFields(id,client));
+        }
     };
 };
 
