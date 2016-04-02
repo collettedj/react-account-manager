@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {setUserFields} from '../../actions/account-manager/user';
+import ToggleButton from './toggle-button';
+import {setUserFields, toggleUserEditing} from '../../actions/account-manager/user';
 
 const UserProfileClass = ({
     user,
     onUserChange,
+    toggleEditing,
     children
 }) => {
 
@@ -16,12 +18,26 @@ const UserProfileClass = ({
         onUserChange({lastname: event.target.value});
     };
 
+    const firstname = user.isEditing ?
+        <input className="form-control" value={user.firstname} onChange={handleFirstnameChange}/>:
+        <div className="form-control-static">{user.firstname}</div>;
+
+    const lastname= user.isEditing ?
+        <input className="form-control" value={user.lastname} onChange={handleLastnameChange}/>:
+        <div className="form-control-static">{user.lastname}</div>;
+
     return (
         <div>
             <h3 className="text-info">User</h3>
             <div>
                 <div className="pull-right">
-                    toggle
+                    <ToggleButton
+                        classNames="btn-xs"
+                        on={user.isEditing}
+                        onToggle={toggleEditing}
+                    >
+                        Edit
+                    </ToggleButton>
                     <button type="button" className="btn btn-xs btn-success pull-right user-save-btn">save</button>
                 </div>
                 <div className="clearfix"></div>
@@ -31,15 +47,13 @@ const UserProfileClass = ({
                 <label className="control-label">First Name
                     <span className="err-msg"></span>
                 </label>
-                <input className="form-control" value={user.firstname} onChange={handleFirstnameChange}/>
-                <div className="form-control-static">{user.firstname}</div>
+                {firstname}
             </div>
             <div className="form-group user-last-name">
                 <label className="control-label">Last Name
                     <span className="err-msg"></span>
                 </label>
-                <input className="form-control" value={user.lastname} onChange={handleLastnameChange}/>
-                <div className="form-control-static">{user.lastname}</div>
+                {lastname}
             </div>
 
             <hr/>
@@ -59,6 +73,9 @@ const mapDispatchToProps = dispatch => {
     return {
         onUserChange: (user) => {
             dispatch(setUserFields(user));
+        },
+        toggleEditing: () => {
+            dispatch(toggleUserEditing());
         }
     };
     
