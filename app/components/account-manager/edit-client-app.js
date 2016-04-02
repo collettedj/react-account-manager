@@ -2,7 +2,7 @@ import React from 'react';
 import {reduxForm} from 'redux-form';
 
 let EditClientApp = ({
-    client ,
+    client,
     isEditing,
     fields: {name, description, identifier, secret},
     handleSubmit,
@@ -11,19 +11,19 @@ let EditClientApp = ({
 
     const nameControl = isEditing ?
         <input className="form-control" {...name}/>:
-        <div className="form-control-static">{client.name}</div>;
+        <div className="form-control-static">{name.value}</div>;
 
     const descriptionControl = isEditing ?
         <input className="form-control" {...description}/>:
-        <div className="form-control-static">{client.description}</div>;
+        <div className="form-control-static">{description.value}</div>;
 
     const identifierControl = isEditing ?
         <input className="form-control" {...identifier}/>:
-        <div className="form-control-static">{client.identifier}</div>;
+        <div className="form-control-static">{identifier.value}</div>;
 
     const secretControl = isEditing ?
         <input className="form-control" {...secret}/>:
-        <div className="form-control-static">{client.secret}</div>;
+        <div className="form-control-static">{secret.value}</div>;
 
     return (
         <form onSubmit={handleSubmit}>
@@ -57,10 +57,5 @@ let EditClientApp = ({
         </form>
     );
 };
-
-EditClientApp = reduxForm({
-    form: 'Contact',
-    fields: ['name', 'description', 'identifier', 'secret'],
-})(EditClientApp);
 
 export default EditClientApp;

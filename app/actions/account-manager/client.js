@@ -2,6 +2,7 @@ export const ACTIONS = {
     ADD_CLIENT: "ADD_CLIENT",
     SET_CLIENT_FIELDS: "SET_CLIENT_FIELDS",
     TOGGLE_CLIENT_EDITING: "TOGGLE_CLIENT_EDITING",
+    SET_CURRENT_CLIENT:"SET_CURRENT_CLIENT",
 };
 
 let clientId = 0;
@@ -33,6 +34,13 @@ export const setClientFields = (id, client) => {
         type: ACTIONS.SET_CLIENT_FIELDS,
         id,
         client,
+    };
+};
+
+export const setCurrentClient = id => {
+    return {
+        type: ACTIONS.SET_CURRENT_CLIENT,
+        id,
     };
 };
 

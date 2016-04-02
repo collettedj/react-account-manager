@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import Modal from 'react-modal';
@@ -7,9 +8,12 @@ import ClientList from './client-list';
 import {addClient} from '../../actions/account-manager/client';
 import {
     toggleOpen,
-    setNewClientFields,
-    clearNewClientFields,
 } from '../../actions/account-manager/add-client-modal';
+
+const EditNewClientApp = reduxForm({
+    form: 'Contact',
+    fields: ['name', 'description', 'identifier', 'secret'],
+})(EditClientApp);
 
 const customStyles = {
   content : {
@@ -79,7 +83,7 @@ let UserProfileIndex = ({
                     <div className="client-modal">
                         <h3 className="text-info">New Client Application</h3>
                         <hr/>
-                        <EditClientApp 
+                        <EditNewClientApp 
                             client={newClient}
                             isEditing={true}
                             onSubmit={handleSubmit} >
@@ -89,7 +93,7 @@ let UserProfileIndex = ({
                                 <button className="btn btn-default btn-sm" type="button"
                                     onClick={toggleModal}>close</button>
                             </div>
-                        </EditClientApp>
+                        </EditNewClientApp>
                 </div>
                 </Modal>
         </div>
@@ -108,15 +112,10 @@ const mapDispatchToProps = dispatch => {
     return {
         toggleModal: () => {
             dispatch(toggleOpen()); 
-            dispatch(clearNewClientFields());
         },
         addClient: (client) => {
             dispatch(addClient(client)); 
             dispatch(toggleOpen());
-            dispatch(clearNewClientFields());
-        },
-        setNewClientFields: (newClient) => {
-            dispatch(setNewClientFields(newClient));
         },
     };
 };
