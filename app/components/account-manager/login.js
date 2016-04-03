@@ -1,5 +1,7 @@
 import React from 'react';
 import {reduxForm} from 'redux-form';
+import {connect} from 'react-redux';
+import {login as loginAction} from '../../actions/account-manager/login';
 
 let LoginForm= ({
     fields: {username, password},
@@ -32,4 +34,31 @@ LoginForm = reduxForm({
     fields:['username', 'password'],
 })(LoginForm);
 
-export default LoginForm;
+let Login = ({
+    login
+}) => {
+    return (
+        <div>
+            <LoginForm onSubmit={login}/>
+        </div>
+    );
+};
+
+const mapStateToProps = state => {
+    return {
+
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        login: (username, password) => dispatch(loginAction(username, password)),
+    };
+};
+
+Login = connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Login);
+
+export default Login;
