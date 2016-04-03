@@ -11,7 +11,7 @@ import {
 } from '../../actions/account-manager/client';
 
 const EditExistingClientApp = reduxForm({
-    form: 'Contact',
+    form: 'ExistingClient',
     fields: ['name', 'description', 'identifier', 'secret'],
 }, state => {
     const clientApp = state.accountManager.clientApp;

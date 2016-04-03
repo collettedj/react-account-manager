@@ -11,7 +11,7 @@ import {
 } from '../../actions/account-manager/add-client-modal';
 
 const EditNewClientApp = reduxForm({
-    form: 'Contact',
+    form: 'NewClient',
     fields: ['name', 'description', 'identifier', 'secret'],
 })(EditClientApp);
 
