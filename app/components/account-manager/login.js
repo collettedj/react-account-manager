@@ -1,31 +1,35 @@
 import React from 'react';
+import {reduxForm} from 'redux-form';
 
-const Login = ({
-
+let LoginForm= ({
+    fields: {username, password},
+    handleSubmit,
 }) => {
     return (
-        <div>
-            <form >
+        <form onSubmit={handleSubmit}>
+            <div className="form-group login-username">
+                <label className="control-label">username
+                    <span className="err-msg"></span>
+                </label>
+                <input className="form-control" placeholder="enter username" {...username}/>
+            </div>
 
-                <div className="form-group login-username">
-                    <label className="control-label">Username
-                        <span className="err-msg"></span>
-                    </label>
-                    <input className="form-control" placeholder="Enter Username"/>
-                </div>
+            <div className="form-group login-password">
+                <label className="control-label">password
+                    <span className="err-msg"></span>
+                </label>
+                <input type="password" className="form-control" placeholder="enter password" {...password}/>
+            </div>
 
-                <div className="form-group login-password">
-                    <label className="control-label">Password
-                        <span className="err-msg"></span>
-                    </label>
-                    <input type="password" className="form-control" placeholder="Enter Password"/>
-                </div>
-
-                <hr/>
-                <button className="btn btn-success pull-right login-btn" type="submit">Login</button>
-            </form>
-        </div>
+            <hr/>
+            <button className="btn btn-success pull-right login-btn" type="submit">login</button>
+        </form>
     );
 };
 
-export default Login;
+LoginForm = reduxForm({
+    form:'login',
+    fields:['username', 'password'],
+})(LoginForm);
+
+export default LoginForm;
