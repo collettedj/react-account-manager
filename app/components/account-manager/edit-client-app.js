@@ -1,5 +1,4 @@
 import React from 'react';
-import {reduxForm} from 'redux-form';
 
 let EditClientApp = ({
     client,
@@ -10,7 +9,7 @@ let EditClientApp = ({
 }) => {
 
     const nameControl = isEditing ?
-        <input className="form-control" {...name}/>:
+        <input className="form-control" {...name} />:
         <div className="form-control-static">{name.value}</div>;
 
     const descriptionControl = isEditing ?
