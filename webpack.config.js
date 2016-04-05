@@ -12,6 +12,13 @@ module.exports = {
     // progress: true,
     // stats: 'errors-only',
     module: {
+        preLoaders: [
+            {
+                test: /\.jsx?$/,
+                loaders: ['eslint'],
+                exclude: /(node_modules|bower_components)/,
+            }
+        ],
         loaders: [
         { 
             test: /\.scss$/, 
