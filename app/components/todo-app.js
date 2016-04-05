@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import AddTodo from './add-todo';
 import Footer from './footer';
 import VisibleTodoList from './visible-todo-list.js'
 
-const TodoApp = ({
-    store,
-}) => {
+const TodoApp = () => {
     return (
         <div >
             <AddTodo />

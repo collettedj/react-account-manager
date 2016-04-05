@@ -1,5 +1,9 @@
 export const ACTIONS = {
-    LOGIN:"LOGIN",
+    REQUEST_LOGIN:"REQUEST_LOGIN",
+    LOGIN_FAILED:"LOGIN_FAILED",
+    LOGIN_SUCCESS:"LOGIN_SUCCESS",
+    REQUEST_LOGOUT:"REQUEST_LOGOUT",
+    LOGOUT_SUCCESS:"LOGOUT_SUCCESS",
 };
 
 export const login = ({
@@ -7,7 +11,7 @@ export const login = ({
     password,
 }) => {
     return {
-        type: ACTIONS.LOGIN,
+        type: ACTIONS.REQUEST_LOGIN,
         username,
         password,
     };

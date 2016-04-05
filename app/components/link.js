@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Link = ({
-    store,
     active,
     children,
     onClick 

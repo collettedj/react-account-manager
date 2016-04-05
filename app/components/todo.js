@@ -1,6 +1,5 @@
 import React from 'react';
 const Todo = ({
-    store,
     onClick,
     completed,
     text

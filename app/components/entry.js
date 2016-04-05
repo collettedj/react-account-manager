@@ -8,16 +8,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import {Router, Route, IndexRoute, hashHistory} from 'react-router';
 import DevTools from './dev-tools';
-
-import {fetchPostsIfNeeded} from '../actions/subreddit';
 
 import rootReducer from '../reducers';
 import AppRouter from '../components/router'; 
 
 const loggerMiddleware = createLogger();
-const crashReporter = store => next => action => {
+const crashReporter = () => next => action => {
     try{
         next(action);
     } catch(err) {
@@ -32,7 +29,7 @@ const store = createStore(rootReducer,
             crashReporter,
             thunkMiddleware,
             loggerMiddleware),
-        DevTools.instrument(),
+        DevTools.instrument()
     )
 );
 

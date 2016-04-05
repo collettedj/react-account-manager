@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import {reduxForm} from 'redux-form';
+import React from 'react';
 import {connect} from 'react-redux';
 import EditUser from './edit-user';
 import ToggleButton from './toggle-button';
@@ -61,7 +60,7 @@ const mapDispatchToProps = dispatch => {
 
 const UserProfile = connect(
     mapStateToProps,
-    mapDispatchToProps,
+    mapDispatchToProps
 )(UserProfileClass);
 
 export default UserProfile;

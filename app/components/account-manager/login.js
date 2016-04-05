@@ -44,7 +44,7 @@ let Login = ({
     );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = () => {
     return {
 
     };
@@ -58,7 +58,7 @@ const mapDispatchToProps = dispatch => {
 
 Login = connect(
     mapStateToProps,
-    mapDispatchToProps,
+    mapDispatchToProps
 )(Login);
 
 export default Login;

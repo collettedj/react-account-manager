@@ -35,7 +35,7 @@ const addClientModal = (state={
             };
         default:
             return state;
-    };
+    }
 };
 
 export default addClientModal;

@@ -30,7 +30,6 @@ class ClientClass extends Component{
 
 	componentWillMount() {
         const {
-            params,
             setCurrentClient
         } = this.props;
 
@@ -50,7 +49,6 @@ class ClientClass extends Component{
             currentClientId,
             isEditing,
             toggleEditing,
-            setCurrentClient,
             setClientFields,
         } = this.props;
 

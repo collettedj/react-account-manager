@@ -26,10 +26,11 @@ const client = (state={
                     ...state,
                     ...action.client,
                 };
-            };
+            }
+            return state;
         default:
             return state;
-    };
+    }
 };
 
 export default client;

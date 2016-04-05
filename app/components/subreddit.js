@@ -1,6 +1,4 @@
-import React from 'react';
 import {connect} from 'react-redux';
-import {ACTIONS} from '../actions/subreddit';
 import SubredditButtons from './subreddit-buttons';
 import {fetchPostsIfNeeded, invalidateSubreddit} from '../actions/subreddit';
 

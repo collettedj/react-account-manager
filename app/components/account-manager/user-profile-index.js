@@ -1,7 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
-import {Link} from 'react-router';
 import Modal from 'react-modal';
 import EditClientApp from './edit-client-app';
 import ClientList from './client-list';
@@ -34,30 +33,12 @@ let UserProfileIndex = ({
     clients,
     toggleModal,
     addClient,
-    setNewClientFields,
     children
 }) => {
 
     const handleSubmit = (newClient) => {
         addClient(newClient);
     };
-
-    const newClientNameChange = (e) => {
-        setNewClientFields({ name: e.target.value });
-    };
-    
-    const newClientDescriptionChange = (e) => {
-        setNewClientFields({ description: e.target.value });
-    };
-
-    const newClientIdentifierChange = (e) => {
-        setNewClientFields({ identifier: e.target.value });
-    };
-
-    const newClientSecretChange = (e) => {
-        setNewClientFields({ secret: e.target.value });
-    };
-
 
     return (
         <div>

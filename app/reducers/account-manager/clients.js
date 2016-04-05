@@ -14,7 +14,7 @@ const clients = (state=[], action) => {
             return state.map(c => client(c, action));
         default:
             return state;
-    };
+    }
 };
 
 export default clients;

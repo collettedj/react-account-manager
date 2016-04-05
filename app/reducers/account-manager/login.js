@@ -1,13 +1,13 @@
 import {ACTIONS} from '../../actions/account-manager/login';
 
 const login = (state={
-    isLoggedIn: false,
+    isAuthenticated: false,
 }, action) => {
     switch(action.type){
-        case ACTIONS.LOGIN:
+        case ACTIONS.REQUEST_LOGIN:
             return {
                 ...state,
-                isLoggedIn:true,
+                isAuthenticated:true,
             };
         default:
             return state;

@@ -2,7 +2,6 @@ import React from 'react';
 import {Router, Route, IndexRoute, hashHistory} from 'react-router';
 
 import TodoApp from './todo-app';
-import About from './about';
 import Home from './home';
 import HomeIndex from './home-index';
 import Subreddit from './subreddit';
@@ -15,8 +14,7 @@ import AccountManagerUserProfile from './account-manager/user-profile';
 import AccountManagerUserProfileIndex from './account-manager/user-profile-index';
 import AccountManagerClient from './account-manager/client';
 
-const AppRouter = ({
-}) => (
+const AppRouter = () => (
     <Router history={hashHistory}>
         <Route path="/" component={Home}>
             <IndexRoute component={HomeIndex}/>

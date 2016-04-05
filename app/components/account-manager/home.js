@@ -1,9 +1,7 @@
 import React from 'react';
 import NavLink from '../nav-link';
 
-const Home =({
-
-}) => {
+const Home =() => {
     return (
         <div className="jumbotron">
             <h2>Account Manager <small>Oauth 2.0 provider with OpenId Connect</small></h2>

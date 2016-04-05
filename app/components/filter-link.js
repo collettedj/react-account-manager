@@ -1,4 +1,3 @@
-import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {setVisibilityFilter} from '../actions/visibility-filter';
 import Link from './link';

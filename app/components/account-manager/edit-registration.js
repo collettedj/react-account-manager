@@ -2,9 +2,7 @@ import React from 'react';
 import {reduxForm} from 'redux-form';
 
 let EditRegistration = ({
-    isEditing,
     fields: {firstname, lastname, username, password, passwordConf},
-    children,
     handleSubmit,
 }) => {
     return (

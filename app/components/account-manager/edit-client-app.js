@@ -1,7 +1,6 @@
 import React from 'react';
 
 let EditClientApp = ({
-    client,
     isEditing,
     fields: {name, description, identifier, secret},
     handleSubmit,
