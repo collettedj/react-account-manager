@@ -3,3 +3,5 @@ coverage
 npm-debug.log
 app/bundle.js
 app/tests
+webpack.config.js
+karma.conf.js

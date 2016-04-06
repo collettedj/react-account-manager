@@ -1,5 +1,9 @@
 {
-  "extends": "eslint:recommended",
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
   "parserOptions": {
     "ecmaVersion": 6,
     "ecmaFeatures": {
@@ -15,7 +19,8 @@
     "es6": true,
   },
   "plugins": [
-    "react"
+    "react",
+    "import"
   ],
   "rules": {
     "no-console": 0,
@@ -29,6 +34,7 @@
     "comma-dangle":0,
     "react/jsx-no-undef": 1,
     "react/jsx-uses-react": 1,
-    "react/jsx-uses-vars": 1
+    "react/jsx-uses-vars": 1,
+    "import/no-commonjs": 2
   }
 }

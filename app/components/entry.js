@@ -1,15 +1,14 @@
-require('../style.scss');
+import '../style.scss';
 import 'babel-polyfill'
-import {compose} from 'redux';
+import {compose, createStore, applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import DevTools from './dev-tools';
 
+import DevTools from './dev-tools';
 import rootReducer from '../reducers';
 import AppRouter from '../components/router'; 
 
