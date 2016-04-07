@@ -32,12 +32,6 @@ const store = createStore(rootReducer,
     )
 );
 
-import Auth from '../utils/auth';
-Auth.login("dcollette", "test1234")
-    .catch(err => {
-        console.log(err);
-    });
-
 
 ReactDOM.render(
     <Provider store={store}>

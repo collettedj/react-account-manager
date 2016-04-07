@@ -5,6 +5,7 @@ export default class Auth {
     static request(options) {
         var request = new Promise(function (resolve, reject) {
             options.success = function (response) {
+                console.log(response);
                 resolve(response);
             };
 
@@ -23,11 +24,6 @@ export default class Auth {
             type:"POST",
             url:"api/v1/authenticate/login",
             data:{username:username, password:password}
-        })
-        .then(res => {
-            return res;
-        }, err => {
-            console.log(err);
         });
     }
 
