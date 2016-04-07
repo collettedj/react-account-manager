@@ -1,7 +1,35 @@
 import React from 'react';
 import NavLink from '../nav-link';
+import {connect} from 'react-redux';
 
-const NavBar = () => {
+let NavBar = ({
+    isAuthenticated,
+    user
+}) => {
+    let navList = null;
+    if(isAuthenticated){
+        navList = <ul className="nav navbar-nav navbar-right">
+            <li className="dropdown">
+                <a href="#/account-manager/login" className="dropdown-toggle" data-toggle="dropdown">
+                    <span className="glyphicon glyphicon-user"></span> Welcome {user.firstname} 
+                    <b className="caret"></b>
+                </a>
+                <ul className="dropdown-menu">
+                    <li><a href="#" >Sign Off</a></li>
+                </ul>
+            </li>
+        </ul>;
+    } else {
+        navList = <ul className="nav navbar-nav navbar-right">
+            <li>
+                <NavLink to="/account-manager/register"><span className="glyphicon glyphicon-send"></span> Register</NavLink>
+            </li>
+            <li>
+                <NavLink to="/account-manager/login"><span className="glyphicon glyphicon-user"></span> Login</NavLink>
+            </li>
+        </ul>;
+    }
+    
     return (
         <nav className="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
             <div className="container">
@@ -16,31 +44,22 @@ const NavBar = () => {
                 </div>
 
                 <div className="collapse navbar-collapse navbar-ex1-collapse">
-                    <ul className="nav navbar-nav navbar-right">
-                    { /*{{#if session.isAuthenticated}}
-                        <li className="dropdown">
-                            <a href="#" className="dropdown-toggle" data-toggle="dropdown">
-                                <span className="glyphicon glyphicon-user"></span> Welcome {{session.data.authenticated.firstname}}
-                                <b className="caret"></b>
-                            </a>
-                            <ul className="dropdown-menu">
-                                <li><a href="#" {{ action 'invalidateSession' }}>Sign Off</a></li>
-                            </ul>
-                        </li>
-                    {{else}}
-                    */ }
-                    <li>
-                        <NavLink to="/account-manager/register"><span className="glyphicon glyphicon-send"></span> Register</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/account-manager/login"><span className="glyphicon glyphicon-user"></span> Login</NavLink>
-                    </li>
-                    {/*{{/if}}*/}
-                    </ul>
+                    {navList}
                 </div>
             </div>
         </nav>
     );
 };
+
+const mapStateToProps = state => {
+    return {
+        isAuthenticated: state.accountManager.login.isAuthenticated,
+        user: state.accountManager.login.user
+    };
+};
+
+NavBar = connect(
+    mapStateToProps
+)(NavBar);
 
 export default NavBar;
