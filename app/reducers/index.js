@@ -4,6 +4,7 @@ import postsBySubreddit from './subreddit-posts-by-subreddit';
 import selectSubreddit from './select-subreddit';
 import todoApp from './todo-app';
 import accountManager from './account-manager/account-manager-app';
+import {routerReducer} from 'react-router-redux';
 
 const mainReducer = combineReducers({
     postsBySubreddit,
@@ -11,6 +12,7 @@ const mainReducer = combineReducers({
     todoApp,
     accountManager,
     form,
+    routing: routerReducer,
 });
 
 export default mainReducer;

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Router, Route, IndexRoute, hashHistory} from 'react-router';
+import {Router, Route, IndexRoute} from 'react-router';
 
 import TodoApp from './todo-app';
 import Home from './home';
@@ -16,7 +16,8 @@ import AccountManagerClient from './account-manager/client';
 import {connect} from 'react-redux';
 
 let AppRouter = ({
-    isAuthenticated
+    isAuthenticated,
+    history
 }) => { 
     const requireAuth = (nextState, replace) => {
         if(!isAuthenticated){
@@ -28,7 +29,7 @@ let AppRouter = ({
     };
 
     return (
-        <Router history={hashHistory}>
+        <Router history={history}>
             <Route path="/" component={Home}>
                 <IndexRoute component={HomeIndex}/>
                 <Route path="/todo" component={TodoApp}/>
