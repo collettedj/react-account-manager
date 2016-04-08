@@ -38,7 +38,7 @@ LoginForm = reduxForm({
 
 let Login = ({
     login,
-    errorMessage
+    errorMessage,
 }) => {
     let errorDiv = <div></div>;
     if(errorMessage){
