@@ -5,7 +5,6 @@ export default class Auth {
     static request(options) {
         var request = new Promise(function (resolve, reject) {
             options.success = function (response) {
-                console.log(response);
                 resolve(response);
             };
 
