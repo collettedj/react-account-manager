@@ -62,7 +62,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    const nextPath = ownProps.location.state.nextPathname;
+    const state = ownProps.location.state;
+    const nextPath = state  && state.nextPathname ? state.nextPathname : '/account-manager';
     return {
         login: (info) => dispatch(loginAction(info.username, info.password, nextPath)),
     };
