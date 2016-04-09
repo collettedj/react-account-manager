@@ -1,4 +1,5 @@
 import '../style.scss';
+import 'bootstrap-sass/assets/javascripts/bootstrap';
 import 'babel-polyfill'
 import {compose, createStore, applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk';

@@ -1,4 +1,4 @@
-// const webpack = require('webpack');
+const webpack = require('webpack');
 module.exports = {
     entry:'./app/components/entry.js',
     output:{
@@ -52,6 +52,23 @@ module.exports = {
 		// }
 		// ]
     },
+    // resolve: {
+    //     alias: {
+    //         jquery: path.join(__dirname, 'development/bower_components/jquery/jquery')
+    //     },
+    //     root: srcPath,
+    //     extensions: ['', '.js', '.css'],
+    //     modulesDirectories: ['node_modules', srcPath, commonStylePath, bootstrapPath]
+    // },
+    plugins:[
+		new webpack.ProvidePlugin({
+			   $: "jquery",
+			   jQuery: "jquery"
+		}),
+		new webpack.ProvidePlugin({
+            bootstrap: "bootstrap-sass/assets/javascript/bootstrap",
+		}),
+    ],
 	// plugins: [
       // new webpack.HotModuleReplacementPlugin()
     // ]
