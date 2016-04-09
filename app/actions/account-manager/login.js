@@ -8,6 +8,14 @@ export const ACTIONS = {
     REQUEST_LOGOUT:"REQUEST_LOGOUT",
     LOGOUT_SUCCESS:"LOGOUT_SUCCESS",
     LOGOUT_FAILED:"LOGOUT_FAILED",
+    SET_USER_FIELDS: "SET_USER_FIELDS",
+};
+
+export const setUserFields = (user) => {
+    return {
+        type:ACTIONS.SET_USER_FIELDS,
+        user
+    };
 };
 
 export const requestLogin = (username, password) => ({

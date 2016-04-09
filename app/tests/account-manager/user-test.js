@@ -1,40 +1,41 @@
-import {createStore} from 'redux';
-import {
-    ACTIONS, 
-    setUserFields
-} from '../../actions/account-manager/user';
-import user from '../../reducers/account-manager/user';
-import deepFreeze from 'deep-freeze';
+// import {createStore} from 'redux';
+// import {
+//     ACTIONS, 
+//     setUserFields
+// } from '../../actions/account-manager/user';
 
-describe("account manager user redux tests", function(){
-    it("test set user fields", function(){
-        const stateBefore = {
-            firstname: "",
-            lastname: "",
-        };
+// import user from '../../reducers/account-manager/user';
+// import deepFreeze from 'deep-freeze';
 
-        const action1 = setUserFields({firstname:"newfirstname"});
-        const action2 = setUserFields({lastname:"newlastname"});
+// describe("account manager user redux tests", function(){
+//     it("test set user fields", function(){
+//         const stateBefore = {
+//             firstname: "",
+//             lastname: "",
+//         };
 
-        deepFreeze(stateBefore);
-        deepFreeze(action1);
-        deepFreeze(action2);
+//         const action1 = setUserFields({firstname:"newfirstname"});
+//         const action2 = setUserFields({lastname:"newlastname"});
 
-        const stateAfter1 = {
-            firstname: "newfirstname",
-            lastname:"",
-        }
+//         deepFreeze(stateBefore);
+//         deepFreeze(action1);
+//         deepFreeze(action2);
+
+//         const stateAfter1 = {
+//             firstname: "newfirstname",
+//             lastname:"",
+//         }
         
-        const stateAfter2 = {
-            firstname: "",
-            lastname:"newlastname",
-        }
+//         const stateAfter2 = {
+//             firstname: "",
+//             lastname:"newlastname",
+//         }
         
 
-        expect(user(stateBefore,action1)).toEqual(stateAfter1);
-        expect(user(stateBefore,action2)).toEqual(stateAfter2);
-    });
-});
+//         expect(user(stateBefore,action1)).toEqual(stateAfter1);
+//         expect(user(stateBefore,action2)).toEqual(stateAfter2);
+//     });
+// });
 
 
 

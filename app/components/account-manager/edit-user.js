@@ -37,9 +37,9 @@ let EditUser = ({
 EditUser = reduxForm({
     form: 'User',
     fields: ['firstname', 'lastname'],
-}, state => {
+}, (state, ownProps) => {
     return {
-        initialValues: state.accountManager.login.user
+        initialValues: ownProps.user 
     };
 })(EditUser);
 

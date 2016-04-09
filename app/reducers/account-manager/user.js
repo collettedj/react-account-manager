@@ -6,11 +6,6 @@ const user = (state={
     isEditing:false,
 },action) => {
     switch(action.type){
-        case ACTIONS.SET_USER_FIELDS:
-            return {
-                ...state,
-                ...action.user,
-            };
         case ACTIONS.TOGGLE_USER_EDITING:
             return {
                 ...state,

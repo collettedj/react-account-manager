@@ -7,6 +7,14 @@ const login = (state={
     errorMessage:null,
 }, action) => {
     switch(action.type){
+        case ACTIONS.SET_USER_FIELDS:
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    ...action.user
+                }
+            };
         case ACTIONS.REQUEST_LOGIN:
             if(!state.isAuthenticated){
                 return {

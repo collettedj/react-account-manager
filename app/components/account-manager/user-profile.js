@@ -2,15 +2,16 @@ import React from 'react';
 import {connect} from 'react-redux';
 import EditUser from './edit-user';
 import ToggleButton from './toggle-button';
-import {setUserFields, toggleUserEditing} from '../../actions/account-manager/user';
+import {toggleUserEditing} from '../../actions/account-manager/user';
+import {setUserFields} from '../../actions/account-manager/login';
 
 const UserProfileClass = ({
     user,
+    loginUser,
     onUserChange,
     toggleEditing,
     children
 }) => {
-
     return (
         <div>
             <h3 className="text-info">User</h3>
@@ -27,6 +28,7 @@ const UserProfileClass = ({
             </div>
 
             <EditUser
+                user={loginUser}
                 isEditing={user.isEditing}
                 onSubmit={onUserChange}>
                 <hr/>
@@ -43,6 +45,7 @@ const UserProfileClass = ({
 const mapStateToProps = state => {
     return {
         user: state.accountManager.user,
+        loginUser: state.accountManager.login.user
     };
 };
 
