@@ -37,6 +37,10 @@ let EditUser = ({
 EditUser = reduxForm({
     form: 'User',
     fields: ['firstname', 'lastname'],
+}, state => {
+    return {
+        initialValues: state.accountManager.login.user
+    };
 })(EditUser);
 
 export default EditUser;
