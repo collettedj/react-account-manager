@@ -61,9 +61,10 @@ const mapStateToProps = state => {
     };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
+    const nextPath = ownProps.location.state.nextPathname;
     return {
-        login: (username, password) => dispatch(loginAction(username, password)),
+        login: (info) => dispatch(loginAction(info.username, info.password, nextPath)),
     };
 };
 

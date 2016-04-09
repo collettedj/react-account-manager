@@ -2,8 +2,7 @@ import '../style.scss';
 import 'babel-polyfill'
 import {compose, createStore, applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import createLogger from 'redux-logger';
-import {syncHistoryWithStore} from 'react-router-redux';
+// import createLogger from 'redux-logger';
 import {hashHistory} from 'react-router';
 
 import React from 'react';
@@ -14,7 +13,9 @@ import DevTools from './dev-tools';
 import rootReducer from '../reducers';
 import AppRouter from '../components/router'; 
 
-const loggerMiddleware = createLogger();
+import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux'
+const routeMiddleware = routerMiddleware(hashHistory);
+// const loggerMiddleware = createLogger();
 const crashReporter = () => next => action => {
     try{
         next(action);
@@ -27,20 +28,19 @@ const crashReporter = () => next => action => {
 const store = createStore(rootReducer,
     compose(
         applyMiddleware(
+            routeMiddleware, 
             crashReporter,
-            thunkMiddleware,
-            loggerMiddleware),
+            thunkMiddleware),
         DevTools.instrument()
     )
 );
 
 const history = syncHistoryWithStore(hashHistory, store);
 
-
 ReactDOM.render(
     <Provider store={store}>
         <div className="container">
-            <AppRouter history={history} />
+            <AppRouter history={history} store={store}/>
             <DevTools />
         </div>
     </Provider>,

@@ -13,16 +13,15 @@ import AccountManagerRegister from './account-manager/register';
 import AccountManagerUserProfile from './account-manager/user-profile';
 import AccountManagerUserProfileIndex from './account-manager/user-profile-index';
 import AccountManagerClient from './account-manager/client';
-import {connect} from 'react-redux';
 
-let router = null;
 
 let AppRouter = ({
-    isAuthenticated,
+    store,
     history
 }) => { 
 
     const requireAuth = (nextState, replace) => {
+        const isAuthenticated = store.getState().accountManager.login.isAuthenticated;
         if(!isAuthenticated){
             replace({
                 pathname:'/account-manager/login',
@@ -31,8 +30,8 @@ let AppRouter = ({
         }
     };
 
-    if(!router){
-        router = <Router history={history}>
+    return (
+        <Router history={history}>
             <Route path="/" component={Home}>
                 <IndexRoute component={HomeIndex}/>
                 <Route path="/todo" component={TodoApp}/>
@@ -47,21 +46,10 @@ let AppRouter = ({
                     <Route path="/account-manager/user-profile/client/:id" component={AccountManagerClient}/>
                 </Route>
             </Route>
-        </Router>;
-    }
+        </Router>
+    );
 
-    return router;
 };
-
-const mapStateToProps = state => {
-    return {
-        isAuthenticated: state.accountManager.login.isAuthenticated,
-    };
-};
-
-AppRouter = connect(
-    mapStateToProps
-)(AppRouter);
 
 export default AppRouter;
 

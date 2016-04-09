@@ -1,4 +1,5 @@
 import Auth from '../../utils/auth';
+import {push} from 'react-router-redux';
 
 export const ACTIONS = {
     REQUEST_LOGIN:"REQUEST_LOGIN",
@@ -24,15 +25,19 @@ export const loginFailed = (message) => ({
     message
 });
 
-export const login = ({
+export const login = (
     username, 
     password,
-}) => {
+    nextPath
+) => {
     return dispatch => {
         dispatch(requestLogin(username,password));
         return Auth.login(username, password)
             .then(user => {
                 dispatch(loginSuccess(user));
+            })
+            .then(() => {
+                dispatch(push(nextPath));
             })
             .catch(err => {
                 dispatch(loginFailed(err.responseText));
