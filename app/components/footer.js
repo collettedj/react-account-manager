@@ -17,7 +17,7 @@ const Footer = () => {
             Completed
         </FilterLink>
         {' '}
-    </p> 
-}
+    </p>;
+};
 
 export default Footer;

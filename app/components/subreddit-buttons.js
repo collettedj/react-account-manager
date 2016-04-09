@@ -13,7 +13,7 @@ const SubredditButtons = ({
             {items.map(i => {
             return <pre key={i.id}>
                 <code>{i.selftext}</code>
-            </pre>
+            </pre>;
             })}
         </div>
     </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import AddTodo from './add-todo';
 import Footer from './footer';
-import VisibleTodoList from './visible-todo-list.js'
+import VisibleTodoList from './visible-todo-list.js';
 
 const TodoApp = () => {
     return (
@@ -11,7 +11,7 @@ const TodoApp = () => {
             <VisibleTodoList />
             <Footer />
         </div>
-    )
-}
+    );
+};
 
 export default TodoApp;

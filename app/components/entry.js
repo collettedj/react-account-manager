@@ -1,6 +1,6 @@
 import '../style.scss';
 import 'bootstrap-sass/assets/javascripts/bootstrap';
-import 'babel-polyfill'
+import 'babel-polyfill';
 import {compose, createStore, applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 // import createLogger from 'redux-logger';
@@ -14,7 +14,7 @@ import DevTools from './dev-tools';
 import rootReducer from '../reducers';
 import AppRouter from '../components/router'; 
 
-import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux'
+import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
 const routeMiddleware = routerMiddleware(hashHistory);
 // const loggerMiddleware = createLogger();
 const crashReporter = () => next => action => {

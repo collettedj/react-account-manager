@@ -71,7 +71,7 @@ export const logout =() => {
         return Auth.logout()
             .then(() => {
                 dispatch(logoutSuccess());
-                dispatch(push('/account-manager'))
+                dispatch(push('/account-manager'));
             })
             .catch(err => {
                 dispatch(logoutFailed(err));

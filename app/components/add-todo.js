@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {connect} from 'react-redux';
 import {addTodo} from '../actions/todo';
 
@@ -15,9 +15,9 @@ let AddTodo = ({dispatch}) => {
             </button>
         </span>
         
-    </div>
+    </div>;
 };
 
-AddTodo = connect()(AddTodo)
+AddTodo = connect()(AddTodo);
 
 export default AddTodo;

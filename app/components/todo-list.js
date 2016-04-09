@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Todo from './todo';
 
 const TodoList = ({
@@ -9,7 +9,7 @@ const TodoList = ({
         {todos.map(todo => {
             return <Todo key={todo.id} {...todo}
                 onClick={() => onTodoClick(todo.id)}>
-            </Todo>
+            </Todo>;
         })}
     </ul>
 );

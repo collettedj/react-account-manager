@@ -37,14 +37,14 @@ const UserProfileClass = ({
             <h3 className="text-info">Applications</h3>
             {children}
         </div>
-    )
-}
+    );
+};
 
 const mapStateToProps = state => {
     return {
         user: state.accountManager.user,
     };
-}
+};
 
 const mapDispatchToProps = dispatch => {
     return {

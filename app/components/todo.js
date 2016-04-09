@@ -12,6 +12,6 @@ const Todo = ({
     >
         {text}
     </li>;   
-}
+};
 
 export default Todo;

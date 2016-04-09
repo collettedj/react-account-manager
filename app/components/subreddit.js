@@ -26,7 +26,7 @@ const mapDispatchToProps = (
             console.log("invalidate");
             dispatch(invalidateSubreddit("reactjs"));
         }
-    }
+    };
 };
 
 const Subreddit = connect(

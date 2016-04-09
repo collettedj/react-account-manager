@@ -8,7 +8,7 @@ const AccountManagerApp = (props) => {
                 {props.children}
         </div>
     );
-}
+};
 
 export default AccountManagerApp;
 
