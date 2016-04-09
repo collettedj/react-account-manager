@@ -15,10 +15,13 @@ import AccountManagerUserProfileIndex from './account-manager/user-profile-index
 import AccountManagerClient from './account-manager/client';
 import {connect} from 'react-redux';
 
+let router = null;
+
 let AppRouter = ({
     isAuthenticated,
     history
 }) => { 
+
     const requireAuth = (nextState, replace) => {
         if(!isAuthenticated){
             replace({
@@ -28,8 +31,8 @@ let AppRouter = ({
         }
     };
 
-    return (
-        <Router history={history}>
+    if(!router){
+        router = <Router history={history}>
             <Route path="/" component={Home}>
                 <IndexRoute component={HomeIndex}/>
                 <Route path="/todo" component={TodoApp}/>
@@ -44,8 +47,10 @@ let AppRouter = ({
                     <Route path="/account-manager/user-profile/client/:id" component={AccountManagerClient}/>
                 </Route>
             </Route>
-        </Router>
-    );
+        </Router>;
+    }
+
+    return router;
 };
 
 const mapStateToProps = state => {
