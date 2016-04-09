@@ -27,4 +27,14 @@ export default class Auth {
         });
     }
 
+    static logout(){
+        return Auth.request({
+            type:"GET",
+            url:"api/v1/authenticate/signout",
+            data:{}
+        });
+    }
+
+
+
 }

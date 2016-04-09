@@ -8,12 +8,16 @@ const login = (state={
 }, action) => {
     switch(action.type){
         case ACTIONS.REQUEST_LOGIN:
-            return {
-                ...state,
-                isRequesting:true,
-                user:null,
-                errorMessage:null,
-            };
+            if(!state.isAuthenticated){
+                return {
+                    ...state,
+                    isRequesting:true,
+                    user:null,
+                    errorMessage:null,
+                };
+            } else {
+                return state;
+            }
         case ACTIONS.LOGIN_SUCCESS:
             return {
                 ...state,
@@ -28,6 +32,30 @@ const login = (state={
                 isRequesting:false,
                 isAuthenticated:false,
                 user:null,
+                errorMessage: action.message,
+            };
+        case ACTIONS.REQUEST_LOGOUT:
+            if(state.isAuthenticated){
+                return {
+                    ...state,
+                    isRequesting:true,
+                    errorMessage:null
+                };
+            } else {
+                return state;
+            }
+        case ACTIONS.LOGOUT_SUCCESS:
+            return {
+                ...state,
+                isRequesting:false,
+                isAuthenticated:false,
+                user:null,
+                errorMessage:null,
+            };
+        case ACTIONS.LOGOUT_FAILED:
+            return {
+                ...state,
+                isRequesting:false,
                 errorMessage: action.message,
             };
         default:

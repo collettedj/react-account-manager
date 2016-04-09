@@ -7,6 +7,7 @@ export const ACTIONS = {
     LOGIN_SUCCESS:"LOGIN_SUCCESS",
     REQUEST_LOGOUT:"REQUEST_LOGOUT",
     LOGOUT_SUCCESS:"LOGOUT_SUCCESS",
+    LOGOUT_FAILED:"LOGOUT_FAILED",
 };
 
 export const requestLogin = (username, password) => ({
@@ -44,3 +45,37 @@ export const login = (
             });
     };
 };
+
+const requestLogout = () => {
+    return {
+        type: ACTIONS.REQUEST_LOGOUT,
+    };
+};
+
+const logoutSuccess = () => {
+    return {
+        type: ACTIONS.LOGOUT_SUCCESS,
+    };
+};
+
+const logoutFailed = (message) => {
+    return {
+        type: ACTIONS.LOGOUT_FAILED,
+        message
+    };
+};
+
+export const logout =() => {
+    return dispatch => {
+        dispatch(requestLogout());
+        return Auth.logout()
+            .then(() => {
+                dispatch(logoutSuccess());
+                dispatch(push('/account-manager'))
+            })
+            .catch(err => {
+                dispatch(logoutFailed(err));
+            });
+    };
+};
+

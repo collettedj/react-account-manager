@@ -1,10 +1,12 @@
 import React from 'react';
 import NavLink from '../nav-link';
 import {connect} from 'react-redux';
+import {logout as logoutAction} from '../../actions/account-manager/login';
 
 let NavBar = ({
     isAuthenticated,
-    user
+    user,
+    logout,
 }) => {
     let navList = null;
     if(isAuthenticated){
@@ -15,7 +17,7 @@ let NavBar = ({
                     <b className="caret"></b>
                 </a>
                 <ul className="dropdown-menu">
-                    <li><a href="#" >Sign Off</a></li>
+                    <li><a href="#" onClick={logout}>Sign Off</a></li>
                 </ul>
             </li>
         </ul>;
@@ -58,8 +60,15 @@ const mapStateToProps = state => {
     };
 };
 
+const mapDispatchToProps = dispatch => {
+    return {
+        logout: () => dispatch(logoutAction())
+    };
+};
+
 NavBar = connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(NavBar);
 
 export default NavBar;
