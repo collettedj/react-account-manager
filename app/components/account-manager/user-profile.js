@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import EditUser from './edit-user';
 import ToggleButton from './toggle-button';
-import {toggleUserEditing} from '../../actions/account-manager/user';
+import {toggleUserEditing, saveUser} from '../../actions/account-manager/user';
 import {setUserFields} from '../../actions/account-manager/login';
 
 const UserProfileClass = ({
@@ -49,10 +49,11 @@ const mapStateToProps = state => {
     };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
     return {
         onUserChange: (user) => {
             dispatch(setUserFields(user));
+            dispatch(saveUser());
         },
         toggleEditing: () => {
             dispatch(toggleUserEditing());

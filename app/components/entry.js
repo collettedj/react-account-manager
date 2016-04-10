@@ -39,6 +39,11 @@ const store = createStore(rootReducer,
 
 const history = syncHistoryWithStore(hashHistory, store);
 
+ReactDOM.render(
+    <div>Loading.....</div>,
+    document.getElementById('content')
+);
+
 store.dispatch(restore(window.location.href))
     .then(()=> {
         ReactDOM.render(

@@ -1,25 +1,9 @@
-import $ from 'jquery';
+import {request} from './request-promise';
 
 export default class Auth {    
     
-    static request(options) {
-        var request = new Promise(function (resolve, reject) {
-            options.success = function (response) {
-                resolve(response);
-            };
-
-            options.error = function (reason) {
-                reject(reason);
-            };
-
-            return $.ajax(options);
-        });
-
-        return request;
-    }
-
     static login(username, password){
-        return Auth.request({
+        return request({
             type:"POST",
             url:"api/v1/authenticate/login",
             data:{username:username, password:password}
@@ -27,7 +11,7 @@ export default class Auth {
     }
 
     static logout(){
-        return Auth.request({
+        return request({
             type:"GET",
             url:"api/v1/authenticate/signout",
             data:{}
@@ -35,7 +19,7 @@ export default class Auth {
     }
     
     static restore(){
-        return Auth.request({
+        return request({
             type:"GET",
             url:"api/v1/authenticate/user",
             data:{}
