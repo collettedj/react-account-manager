@@ -40,7 +40,9 @@ const store = createStore(rootReducer,
 const history = syncHistoryWithStore(hashHistory, store);
 
 ReactDOM.render(
-    <div>Loading.....</div>,
+    <div>
+        <span className="fa fa-circle-o-notch fa-spin"></span> Loading.....
+    </div>,
     document.getElementById('content')
 );
 

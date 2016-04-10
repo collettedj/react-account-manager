@@ -32,7 +32,9 @@ const UserProfileClass = ({
                 isEditing={user.isEditing}
                 onSubmit={onUserChange}>
                 <hr/>
-                <button type="submit" className="btn btn-xs btn-success pull-right user-save-btn">save</button>
+                <button type="submit" disabled={user.isRequesting || !user.isEditing} className={"btn btn-xs pull-right user-save-btn " + (user.isRequesting ? "btn-warning" : "btn-success")}>
+                    <span className={"fa fa-circle-o-notch " + (user.isRequesting ? "fa-spin" : "") }></span> save
+                </button>
                 <div className="clearfix"/>
             </EditUser>
            
