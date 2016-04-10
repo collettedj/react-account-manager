@@ -88,7 +88,7 @@ const login = (state={
             return {
                 ...state,
                 isRequesting:false,
-                errorMessage: action.message,
+                errorMessage: null 
             };
         default:
             return state;

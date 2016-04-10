@@ -34,7 +34,7 @@ export const loginSuccess = (user) => ({
 
 export const loginFailed = (message) => ({
     type: ACTIONS.LOGIN_FAILED,
-    message
+    message: JSON.stringify(message)
 });
 
 export const login = (
@@ -72,7 +72,7 @@ const logoutSuccess = () => {
 const logoutFailed = (message) => {
     return {
         type: ACTIONS.LOGOUT_FAILED,
-        message
+        message: JSON.stringify(message)
     };
 };
 
@@ -106,11 +106,11 @@ const restoreSuccess = (user) => {
 const restoreFailed = (message) => {
     return {
         type: ACTIONS.RESTORE_FAILED,
-        message
+        message: JSON.stringify(message)
     };
 };
 
-export const restore = (currentUrl) => {
+export const restore = () => {
     return (dispatch, getState) => {
         dispatch(requestRestore());
         return Auth.restore()
@@ -118,9 +118,17 @@ export const restore = (currentUrl) => {
                 dispatch(restoreSuccess(user));
                 const state = getState();
                 if(state.accountManager.login.isAuthenticated){
-                    const strMatch = currentUrl.match(/#(.*)[?].*$/);
-                    const nextPath = strMatch[1];
+                    // const strMatch = currentUrl.match(/#(.*)[?].*$/);
+                    // const nextPath = strMatch[1];
+                    // dispatch(push(nextPath));
+                    const routingState = state.routing.locationBeforeTransitions.state;
+                    let nextPath = '/account-manager';
+                    if(routingState && routingState.nextPathname){
+                        nextPath = routingState.nextPathname;    
+                    }
                     dispatch(push(nextPath));
+                    console.log(routingState);
+
                 }
             })
             .catch(err => {
