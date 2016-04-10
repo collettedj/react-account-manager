@@ -111,25 +111,11 @@ const restoreFailed = (message) => {
 };
 
 export const restore = () => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch(requestRestore());
         return Auth.restore()
             .then(user => {
                 dispatch(restoreSuccess(user));
-                const state = getState();
-                if(state.accountManager.login.isAuthenticated){
-                    // const strMatch = currentUrl.match(/#(.*)[?].*$/);
-                    // const nextPath = strMatch[1];
-                    // dispatch(push(nextPath));
-                    const routingState = state.routing.locationBeforeTransitions.state;
-                    let nextPath = '/account-manager';
-                    if(routingState && routingState.nextPathname){
-                        nextPath = routingState.nextPathname;    
-                    }
-                    dispatch(push(nextPath));
-                    console.log(routingState);
-
-                }
             })
             .catch(err => {
                 dispatch(restoreFailed(err));

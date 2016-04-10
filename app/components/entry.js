@@ -30,25 +30,26 @@ const crashReporter = () => next => action => {
 const store = createStore(rootReducer,
     compose(
         applyMiddleware(
+            thunkMiddleware,
             routeMiddleware, 
-            crashReporter,
-            thunkMiddleware),
+            crashReporter),
         DevTools.instrument()
     )
 );
 
-store.dispatch(restore(window.location.href));
-
 const history = syncHistoryWithStore(hashHistory, store);
 
-ReactDOM.render(
-    <Provider store={store}>
-        <div className="container">
-            <AppRouter history={history} store={store}/>
-            <DevTools />
-        </div>
-    </Provider>,
-    document.getElementById('content')
-);
+store.dispatch(restore(window.location.href))
+    .then(()=> {
+        ReactDOM.render(
+            <Provider store={store}>
+                <div className="container">
+                    <AppRouter history={history} store={store}/>
+                    <DevTools />
+                </div>
+            </Provider>,
+            document.getElementById('content')
+        );
+    });
 
 
