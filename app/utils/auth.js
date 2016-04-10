@@ -33,7 +33,13 @@ export default class Auth {
             data:{}
         });
     }
-
-
+    
+    static restore(){
+        return Auth.request({
+            type:"GET",
+            url:"api/v1/authenticate/user",
+            data:{}
+        });
+    }
 
 }

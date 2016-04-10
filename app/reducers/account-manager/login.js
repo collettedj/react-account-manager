@@ -66,6 +66,30 @@ const login = (state={
                 isRequesting:false,
                 errorMessage: action.message,
             };
+        case ACTIONS.REQUEST_RESTORE:
+            if(!state.isAuthenticated){
+                return {
+                    ...state,
+                    isRequesting:true,
+                    errorMessage:null
+                };
+            } else {
+                return state;
+            }
+        case ACTIONS.RESTORE_SUCCESS:
+            return {
+                ...state,
+                isRequesting:false,
+                isAuthenticated: action.user !== null,
+                errorMessage:null,
+                user: action.user,
+            };
+        case ACTIONS.RESTORE_FAILED:
+            return {
+                ...state,
+                isRequesting:false,
+                errorMessage: action.message,
+            };
         default:
             return state;
     }

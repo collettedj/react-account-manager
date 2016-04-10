@@ -13,6 +13,7 @@ import { Provider } from 'react-redux';
 import DevTools from './dev-tools';
 import rootReducer from '../reducers';
 import AppRouter from '../components/router'; 
+import {restore} from '../actions/account-manager/login';
 
 import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
 const routeMiddleware = routerMiddleware(hashHistory);
@@ -35,6 +36,8 @@ const store = createStore(rootReducer,
         DevTools.instrument()
     )
 );
+
+store.dispatch(restore(window.location.href));
 
 const history = syncHistoryWithStore(hashHistory, store);
 

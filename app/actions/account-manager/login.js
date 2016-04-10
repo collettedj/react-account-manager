@@ -9,6 +9,9 @@ export const ACTIONS = {
     LOGOUT_SUCCESS:"LOGOUT_SUCCESS",
     LOGOUT_FAILED:"LOGOUT_FAILED",
     SET_USER_FIELDS: "SET_USER_FIELDS",
+    REQUEST_RESTORE:"REQUEST_RESTORE",
+    RESTORE_SUCCESS:"RESTORE_SUCCESS",
+    RESTORE_FAILED:"RESTORE_FAILED"
 };
 
 export const setUserFields = (user) => {
@@ -83,6 +86,45 @@ export const logout =() => {
             })
             .catch(err => {
                 dispatch(logoutFailed(err));
+            });
+    };
+};
+
+const requestRestore = () => {
+    return {
+        type: ACTIONS.REQUEST_RESTORE
+    };  
+};
+
+const restoreSuccess = (user) => {
+    return {
+        type: ACTIONS.RESTORE_SUCCESS,
+        user
+    };
+};
+
+const restoreFailed = (message) => {
+    return {
+        type: ACTIONS.RESTORE_FAILED,
+        message
+    };
+};
+
+export const restore = (currentUrl) => {
+    return (dispatch, getState) => {
+        dispatch(requestRestore());
+        return Auth.restore()
+            .then(user => {
+                dispatch(restoreSuccess(user));
+                const state = getState();
+                if(state.accountManager.login.isAuthenticated){
+                    const strMatch = currentUrl.match(/#(.*)[?].*$/);
+                    const nextPath = strMatch[1];
+                    dispatch(push(nextPath));
+                }
+            })
+            .catch(err => {
+                dispatch(restoreFailed(err));
             });
     };
 };

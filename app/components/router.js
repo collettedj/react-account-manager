@@ -1,5 +1,6 @@
 import React from 'react';
 import {Router, Route, IndexRoute} from 'react-router';
+import {push} from 'react-router-redux';
 
 import TodoApp from './todo-app';
 import Home from './home';
@@ -30,6 +31,17 @@ let AppRouter = ({
         }
     };
 
+    const requireNoAuth = (nextState, replace) => {
+        const isAuthenticated = store.getState().accountManager.login.isAuthenticated;
+        if(isAuthenticated){
+            replace({
+                pathname:'/account-manager',
+                state: { }
+            });
+            store.dispatch(push('/account-manager'));
+        }
+    };
+
     return (
         <Router history={history}>
             <Route path="/" component={Home}>
@@ -39,7 +51,7 @@ let AppRouter = ({
             </Route>
             <Route path="/account-manager" component={AccountManagerApp}>
                 <IndexRoute component={AccountManagerHome}/>
-                <Route path="/account-manager/login" component={AccountManagerLogin}/>
+                <Route path="/account-manager/login" component={AccountManagerLogin} onEnter={requireNoAuth}/>
                 <Route path="/account-manager/register" component={AccountManagerRegister}/>
                 <Route path="/account-manager/user-profile" component={AccountManagerUserProfile} onEnter={requireAuth}>
                     <IndexRoute component={AccountManagerUserProfileIndex}/>
