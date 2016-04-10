@@ -28,6 +28,7 @@ let AppRouter = ({
                 pathname:'/account-manager/login',
                 state: { nextPathname: nextState.location.pathname}
             });
+            store.dispatch(push('/account-manager'));
         }
     };
 
