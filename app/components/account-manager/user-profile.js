@@ -17,14 +17,14 @@ class UserProfileClass extends Component{
     render(){
 
         const {
-            user,
-            loginUser,
+            userFormState,
+            userData,
             onUserChange,
             toggleEditing,
             children
         } = this.props;
 
-        if(user.isRequesting){
+        if(userFormState.isRequesting){
             return <div>
                 <span className="fa fa-circle-o-notch fa-spin"></span>
             </div>;
@@ -36,7 +36,7 @@ class UserProfileClass extends Component{
                         <div className="pull-right">
                             <ToggleButton
                                 classNames="btn-xs"
-                                on={user.isEditing}
+                                on={userFormState.isEditing}
                                 onToggle={toggleEditing} >
                                 Edit
                             </ToggleButton>
@@ -45,14 +45,14 @@ class UserProfileClass extends Component{
                     </div>
 
                     <EditUser
-                        user={loginUser}
-                        isEditing={user.isEditing}
+                        user={userData}
+                        isEditing={userFormState.isEditing}
                         onSubmit={onUserChange}>
                         <hr/>
                         <button type="submit" 
-                            disabled={user.isRequesting || !user.isEditing} 
-                            className={"btn btn-xs pull-right user-save-btn " + (user.isRequesting ? "btn-warning" : "btn-success")}>
-                            <span className={"fa fa-circle-o-notch " + (user.isRequesting ? "fa-spin" : "") }></span> save
+                            disabled={userFormState.isRequesting || !userFormState.isEditing} 
+                            className={"btn btn-xs pull-right user-save-btn " + (userFormState.isRequesting ? "btn-warning" : "btn-success")}>
+                            <span className={"fa fa-circle-o-notch " + (userFormState.isRequesting ? "fa-spin" : "") }></span> save
                         </button>
                         <div className="clearfix"/>
                     </EditUser>
@@ -68,8 +68,8 @@ class UserProfileClass extends Component{
 
 const mapStateToProps = state => {
     return {
-        user: state.accountManager.user,
-        loginUser: state.accountManager.data.user
+        userFormState: state.accountManager.user,
+        userData: state.accountManager.data.user
     };
 };
 
