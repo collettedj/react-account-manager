@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import EditUser from './edit-user';
 import ToggleButton from './toggle-button';
-import {toggleUserEditing, saveUser, getUser} from '../../actions/account-manager/user';
-import {setUserFields} from '../../actions/account-manager/login';
+import {toggleUserEditing, saveUser, getUser, setUserFields} from '../../actions/account-manager/user';
 
 class UserProfileClass extends Component{
     constructor(props, context){
@@ -25,36 +24,44 @@ class UserProfileClass extends Component{
             children
         } = this.props;
 
-        return (
-            <div>
-                <h3 className="text-info">User</h3>
+        if(user.isRequesting){
+            return <div>
+                <span className="fa fa-circle-o-notch fa-spin"></span>
+            </div>;
+        } else {
+            return (
                 <div>
-                    <div className="pull-right">
-                        <ToggleButton
-                            classNames="btn-xs"
-                            on={user.isEditing}
-                            onToggle={toggleEditing} >
-                            Edit
-                        </ToggleButton>
+                    <h3 className="text-info">User</h3>
+                    <div>
+                        <div className="pull-right">
+                            <ToggleButton
+                                classNames="btn-xs"
+                                on={user.isEditing}
+                                onToggle={toggleEditing} >
+                                Edit
+                            </ToggleButton>
+                        </div>
+                        <div className="clearfix"></div>
                     </div>
-                    <div className="clearfix"></div>
-                </div>
 
-                <EditUser
-                    user={loginUser}
-                    isEditing={user.isEditing}
-                    onSubmit={onUserChange}>
-                    <hr/>
-                    <button type="submit" disabled={user.isRequesting || !user.isEditing} className={"btn btn-xs pull-right user-save-btn " + (user.isRequesting ? "btn-warning" : "btn-success")}>
-                        <span className={"fa fa-circle-o-notch " + (user.isRequesting ? "fa-spin" : "") }></span> save
-                    </button>
-                    <div className="clearfix"/>
-                </EditUser>
-               
-                <h3 className="text-info">Applications</h3>
-                {children}
-            </div>
-        );
+                    <EditUser
+                        user={loginUser}
+                        isEditing={user.isEditing}
+                        onSubmit={onUserChange}>
+                        <hr/>
+                        <button type="submit" 
+                            disabled={user.isRequesting || !user.isEditing} 
+                            className={"btn btn-xs pull-right user-save-btn " + (user.isRequesting ? "btn-warning" : "btn-success")}>
+                            <span className={"fa fa-circle-o-notch " + (user.isRequesting ? "fa-spin" : "") }></span> save
+                        </button>
+                        <div className="clearfix"/>
+                    </EditUser>
+                   
+                    <h3 className="text-info">Applications</h3>
+                    {children}
+                </div>
+            );
+        }
     }
 
 }
@@ -62,7 +69,7 @@ class UserProfileClass extends Component{
 const mapStateToProps = state => {
     return {
         user: state.accountManager.user,
-        loginUser: state.accountManager.login.user
+        loginUser: state.accountManager.data.user
     };
 };
 

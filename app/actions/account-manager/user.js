@@ -8,6 +8,14 @@ export const ACTIONS = {
     REQUSET_GET_USER:"REQUEST_GET_USER",
     GET_USER_SUCCESS:"GET_USER_SUCCESS",
     GET_USER_FAILED:"GET_USER_FAILED",
+    SET_USER_FIELDS: "SET_USER_FIELDS",
+};
+
+export const setUserFields = (user) => {
+    return {
+        type:ACTIONS.SET_USER_FIELDS,
+        user
+    };
 };
 
 export const toggleUserEditing  = () => {
@@ -38,7 +46,7 @@ const saveUserFailed = err => {
 
 export const saveUser = () => {
     return (dispatch,getState) => {
-        const user = getState().accountManager.login.user;
+        const user = getState().accountManager.data.user;
         dispatch(requestSaveUser());
          return UserRepo.save(user)
             .then(result => {

@@ -1,5 +1,4 @@
 import {ACTIONS} from '../../actions/account-manager/login';
-import {ACTIONS as USER_ACTIONS} from '../../actions/account-manager/user';
 
 const login = (state={
     isRequesting: false,
@@ -8,19 +7,6 @@ const login = (state={
     errorMessage:null,
 }, action) => {
     switch(action.type){
-        case USER_ACTIONS.SAVE_USER_SUCCESS:
-            return {
-                ...state,
-                user:action.user
-            };
-        case ACTIONS.SET_USER_FIELDS:
-            return {
-                ...state,
-                user: {
-                    ...state.user,
-                    ...action.user
-                }
-            };
         case ACTIONS.REQUEST_LOGIN:
             if(!state.isAuthenticated){
                 return {
