@@ -1,33 +1,30 @@
 import {ACTIONS} from '../../actions/account-manager/client';
 
 const client = (state={
+    isEditing:false
 }, action) => {
     switch(action.type){
-        case ACTIONS.ADD_CLIENT:
-            return {
-                id: action.id,
-                name: action.name,
-                description: action.description,
-                identifier: action.identifier,
-                secret: action.secret,
-                isEditing: false,
-            };
+        // case ACTIONS.ADD_CLIENT:
+        //     return {
+        //         id: action.id,
+        //         name: action.name,
+        //         description: action.description,
+        //         identifier: action.identifier,
+        //         secret: action.secret,
+        //     };
         case ACTIONS.TOGGLE_CLIENT_EDITING:
-            if(state.id === action.id){
-                return {
-                    ...state,
-                    isEditing: !state.isEditing,
-                };
-            }
-            return state;
-        case ACTIONS.SET_CLIENT_FIELDS:
-            if(state.id === action.id){
-                return {
-                    ...state,
-                    ...action.client,
-                };
-            }
-            return state;
+            return {
+                ...state,
+                isEditing: !state.isEditing,
+            };
+        // case ACTIONS.SET_CLIENT_FIELDS:
+        //     if(state.id === action.id){
+        //         return {
+        //             ...state,
+        //             ...action.client,
+        //         };
+        //     }
+        //     return state;
         default:
             return state;
     }

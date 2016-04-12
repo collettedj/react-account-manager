@@ -90,15 +90,18 @@ class ClientClass extends Component{
 }
 
 const mapStateToProps = state => {
-    const clientApp = state.accountManager.clientApp;
     const data = state.accountManager.data;
     const clients = data.clients;
+
+    const clientApp = state.accountManager.clientApp;
+    const isEditing = clientApp.client.isEditing;
     const currentClientId = clientApp.currentClientId;
+
     const client = clients.find(c => c._id.toString() === currentClientId) || { isEditing: false };
 
     return {
         currentClientId: client._id,
-        isEditing: client.isEditing,
+        isEditing,
     };
 };
 

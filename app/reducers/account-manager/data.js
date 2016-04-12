@@ -1,4 +1,7 @@
 import {ACTIONS as USER_ACTIONS} from '../../actions/account-manager/user';
+import {ACTIONS as CLIENT_ACTIONS} from '../../actions/account-manager/client';
+
+import client from './client';
 
 const data = (state={
     user:null,
@@ -24,7 +27,16 @@ const data = (state={
                 user: action.user,
                 clients: action.clients
             };
-        
+        // case CLIENT_ACTIONS.TOGGLE_CLIENT_EDITING:
+        //     return {
+        //         ...state,
+        //         clients: state.clients.map( c => client(c,action))
+        //     };
+        case CLIENT_ACTIONS.SET_CLIENT_FIELDS:
+            return {
+                ...state,
+                clients: state.clients.map( c => client(c,action))
+            };
         default:
             return state;
     }
