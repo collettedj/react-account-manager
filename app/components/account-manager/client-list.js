@@ -8,9 +8,9 @@ const ClientList = ({
         <ul className="list-group client-list">
             {clients.map(client => {
                 return (
-                    <li className="list-group-item" key={client.id}>
-                        <Link to={`/account-manager/user-profile/client/${client.id}`}>
-                            {client.id}-{client.name}
+                    <li className="list-group-item" key={client._id}>
+                        <Link to={`/account-manager/user-profile/client/${client._id}`}>
+                            {client._id}-{client.name}
                         </Link>
                     </li>
                 );

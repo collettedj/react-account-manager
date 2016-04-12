@@ -15,11 +15,11 @@ const EditExistingClientApp = reduxForm({
     fields: ['name', 'description', 'identifier', 'secret'],
 }, state => {
     const clientApp = state.accountManager.clientApp;
-    const clients = clientApp.clients;
+    const clients = state.accountManager.data.clients;
     const currentClientId = clientApp.currentClientId;
 
     return {
-        initialValues: clients.find(c => c.id.toString() === currentClientId) || {}
+        initialValues: clients.find(c => c._id.toString() === currentClientId) || {}
     };
 })(EditClientApp);
 
@@ -91,12 +91,13 @@ class ClientClass extends Component{
 
 const mapStateToProps = state => {
     const clientApp = state.accountManager.clientApp;
-    const clients = clientApp.clients;
+    const data = state.accountManager.data;
+    const clients = data.clients;
     const currentClientId = clientApp.currentClientId;
-    const client = clients.find(c => c.id.toString() === currentClientId) || { isEditing: false };
+    const client = clients.find(c => c._id.toString() === currentClientId) || { isEditing: false };
 
     return {
-        currentClientId: client.id,
+        currentClientId: client._id,
         isEditing: client.isEditing,
     };
 };

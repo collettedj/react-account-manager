@@ -84,7 +84,7 @@ let UserProfileIndex = ({
 const mapStateToProps = state => {
     return {
         modalIsOpen: state.accountManager.clientApp.addClientModal.isOpen,
-        clients: state.accountManager.clientApp.clients,
+        clients: state.accountManager.data.clients,
         newClient: state.accountManager.clientApp.addClientModal.newClient,
     };
 };
