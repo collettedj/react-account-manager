@@ -29,6 +29,23 @@ const user = (state={
                 isRequesting:false,
                 errorMessage:action.message
             };
+        case ACTIONS.REQUEST_GET_USER:
+            return {
+                ...state,
+                isRequesting: true,
+            };
+        case ACTIONS.GET_USER_SUCCESS:
+            return {
+                ...state,
+                isRequesting: false,
+                errorMessage: null,
+            };
+        case ACTIONS.GET_USER_FAILED:
+            return {
+                ...state,
+                isRequesting: false,
+                errorMessage: null,
+            };
         default:
             return state;
     }

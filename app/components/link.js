@@ -13,8 +13,7 @@ const Link = ({
             onClick={e => {
                 e.preventDefault();
                 onClick();
-            }}
-        >
+            }} >
             {children}
         </a>
     );

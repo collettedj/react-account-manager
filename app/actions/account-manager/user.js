@@ -5,6 +5,9 @@ export const ACTIONS = {
     REQUEST_SAVE_USER:"REQUEST_SAVE_USER",
     SAVE_USER_SUCCESS:"SAVE_USER_SUCCESS",
     SAVE_USER_FAILED:"SAVE_USER_FAILED",
+    REQUSET_GET_USER:"REQUEST_GET_USER",
+    GET_USER_SUCCESS:"GET_USER_SUCCESS",
+    GET_USER_FAILED:"GET_USER_FAILED",
 };
 
 export const toggleUserEditing  = () => {
@@ -43,6 +46,41 @@ export const saveUser = () => {
             })
             .catch(err => {
                 dispatch(saveUserFailed(err));
+            });
+    };
+};
+
+const requestGetUser = () => {
+    return {
+        type: ACTIONS.REQUSET_GET_USER,
+    };
+};
+
+const getUserSuccess = (user, clients) => {
+    return {
+        type: ACTIONS.GET_USER_SUCCESS,
+        user,
+        clients
+    };
+};
+
+const getUserFailed = (err) => {
+    return {
+        type: ACTIONS.GET_USER_FAILED,
+        message: JSON.stringify(err)
+    };
+};
+
+export const getUser = () => {
+    return (dispatch,getState) => {
+        const user = getState().accountManager.login.user;
+        dispatch(requestGetUser());
+        return UserRepo.getUser(user._id)
+            .then(result => {
+                dispatch(getUserSuccess(result.user, result.clients));
+            })
+            .catch(err => {
+                dispatch(getUserFailed(err));
             });
     };
 };
