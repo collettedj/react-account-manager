@@ -1,7 +1,7 @@
 import {ACTIONS as USER_ACTIONS} from '../../actions/account-manager/user';
-import {ACTIONS as CLIENT_ACTIONS} from '../../actions/account-manager/client-form';
+import {ACTIONS as CLIENT_ACTIONS} from '../../actions/account-manager/client-data';
 
-import client from './client-form';
+import clientData from './client-data';
 
 const data = (state={
     user:null,
@@ -32,13 +32,14 @@ const data = (state={
                 ...state,
                 clients: [
                     ...state.clients,
-                    client(undefined,action)
+                    clientData(undefined,action)
                 ]
             };
         case CLIENT_ACTIONS.SET_CLIENT_FIELDS:
+            console.log("set the client fields");
             return {
                 ...state,
-                clients: state.clients.map( c => client(c,action))
+                clients: state.clients.map( c => clientData(c,action))
             };
         default:
             return state;

@@ -20,10 +20,10 @@ export const addClient = ({
     };
 };
 
-export const setClientFields = (id, client) => {
+export const setClientFields = (_id, client) => {
     return {
         type: ACTIONS.SET_CLIENT_FIELDS,
-        id,
+        _id,
         client,
     };
 };
