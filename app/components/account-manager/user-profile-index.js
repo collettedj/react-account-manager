@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Modal from 'react-modal';
 import EditClientApp from './edit-client-app';
 import ClientList from './client-list';
-import {addClient} from '../../actions/account-manager/client';
+import {addClient} from '../../actions/account-manager/client-data';
 import {
     toggleOpen,
 } from '../../actions/account-manager/add-client-modal';

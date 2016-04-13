@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import client from './client';
+import client from './client-form';
 import addClientModal from './add-client-modal';
 import currentClientId from './current-client';
 

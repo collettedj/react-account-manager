@@ -1,4 +1,4 @@
-import {ACTIONS} from '../../actions/account-manager/client';
+import {ACTIONS} from '../../actions/account-manager/client-form';
 
 const currentClientId = (state=-1, action) => {
     switch(action.type){

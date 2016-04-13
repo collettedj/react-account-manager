@@ -4,11 +4,13 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import EditClientApp from './edit-client-app';
 import ToggleButton from './toggle-button';
+
 import {
     toggleClientEditing, 
     setCurrentClient,
-    setClientFields,
-} from '../../actions/account-manager/client';
+} from '../../actions/account-manager/client-form';
+
+import {setClientFields} from '../../actions/account-manager/client-data';
 
 const EditExistingClientApp = reduxForm({
     form: 'ExistingClient',
