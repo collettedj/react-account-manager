@@ -4,17 +4,17 @@ const clientData = (state={
     _id: null,
     name: null,
     description:null,
-    identifier:null,
+    clientIdentifier:null,
     secret:null
 },action) => {
     switch(action.type){
-        case ACTIONS.ADD_CLIENT:
-            return {
-                name: action.name,
-                description: action.description,
-                identifier: action.identifier,
-                secret: action.secret,
-            };
+        // case ACTIONS.ADD_CLIENT:
+        //     return {
+        //         name: action.name,
+        //         description: action.description,
+        //         clientIdentifier: action.clientIdentifier,
+        //         secret: action.secret,
+        //     };
         case ACTIONS.SET_CLIENT_FIELDS:
             if(state._id === action._id){
                 return {

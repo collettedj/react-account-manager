@@ -2,21 +2,21 @@ import {request} from '../../utils/request-promise';
 
 export default class ClientRepo {
 
-    static getClientsForUser(userId){
+    static save(client){
         const url = `api/v1/clients/${client._id}`;
         return request({
-            type:"GET",
+            type:"PUT",
             url,
             data:{
                 client
             }
         });
     }
-    
-    static save(client){
-        const url = `api/v1/clients/${client._id}`;
+
+    static create(client){
+        const url = `api/v1/clients`;
         return request({
-            type:"PUT",
+            type:"POST",
             url,
             data:{
                 client

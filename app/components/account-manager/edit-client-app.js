@@ -2,7 +2,7 @@ import React from 'react';
 
 let EditClientApp = ({
     isEditing,
-    fields: {name, description, identifier, secret},
+    fields: {name, description, clientIdentifier, secret},
     handleSubmit,
     children,
 }) => {
@@ -16,8 +16,8 @@ let EditClientApp = ({
         <div className="form-control-static">{description.value}</div>;
 
     const identifierControl = isEditing ?
-        <input className="form-control" {...identifier}/>:
-        <div className="form-control-static">{identifier.value}</div>;
+        <input className="form-control" {...clientIdentifier}/>:
+        <div className="form-control-static">{clientIdentifier.value}</div>;
 
     const secretControl = isEditing ?
         <input className="form-control" {...secret}/>:

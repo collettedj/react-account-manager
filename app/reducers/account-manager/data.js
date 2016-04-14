@@ -27,19 +27,28 @@ const data = (state={
                 user: action.user,
                 clients: action.clients
             };
-        case CLIENT_ACTIONS.ADD_CLIENT:
-            return {
-                ...state,
-                clients: [
-                    ...state.clients,
-                    clientData(undefined,action)
-                ]
-            };
+        // case CLIENT_ACTIONS.ADD_CLIENT:
+        //     return {
+        //         ...state,
+        //         clients: [
+        //             ...state.clients,
+        //             clientData(undefined,action)
+        //         ]
+        //     };
         case CLIENT_ACTIONS.SET_CLIENT_FIELDS:
             console.log("set the client fields");
             return {
                 ...state,
                 clients: state.clients.map( c => clientData(c,action))
+            };
+
+        case CLIENT_ACTIONS.SAVE_CLIENT_SUCCESS:
+            return {
+                ...state,
+                clients: [ 
+                    ...state.clients,
+                    action.client
+                ]
             };
         default:
             return state;

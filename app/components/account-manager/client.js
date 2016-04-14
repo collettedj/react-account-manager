@@ -14,7 +14,7 @@ import {setClientFields} from '../../actions/account-manager/client-data';
 
 const EditExistingClientApp = reduxForm({
     form: 'ExistingClient',
-    fields: ['name', 'description', 'identifier', 'secret'],
+    fields: ['name', 'description', 'clientIdentifier', 'secret'],
 }, state => {
     const clientApp = state.accountManager.clientApp;
     const clients = state.accountManager.data.clients;
