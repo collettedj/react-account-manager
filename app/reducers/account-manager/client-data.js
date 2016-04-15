@@ -15,6 +15,7 @@ const clientData = (state={
         //         clientIdentifier: action.clientIdentifier,
         //         secret: action.secret,
         //     };
+        case ACTIONS.SAVE_CLIENT_SUCCESS:
         case ACTIONS.SET_CLIENT_FIELDS:
             if(state._id === action._id){
                 return {

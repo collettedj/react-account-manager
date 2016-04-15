@@ -50,6 +50,13 @@ const data = (state={
                     action.client
                 ]
             };
+            
+        case CLIENT_ACTIONS.SAVE_CLIENT_SUCCESS:
+            return {
+                ...state,
+                clients: state.clients.map( c => clientData(c,action))
+            };
+            
         default:
             return state;
     }

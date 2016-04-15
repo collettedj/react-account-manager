@@ -30,6 +30,24 @@ const client = (state={
                 isRequesting:false,
                 errorMessage:action.message,
             };
+        case DATA_ACTIONS.REQUEST_SAVE_CLIENT:
+            return {
+                ...state,
+                isRequesting:true,
+                errorMessage:null,
+            };
+        case DATA_ACTIONS.SAVE_CLIENT_SUCCESS:
+            return {
+                ...state,
+                isRequesting:false,
+                errorMessage:null,
+            };
+        case DATA_ACTIONS.SAVE_CLIENT_FAILED:
+            return {
+                ...state,
+                isRequesting:false,
+                errorMessage:action.message,
+            };
         default:
             return state;
     }

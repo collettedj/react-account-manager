@@ -10,11 +10,11 @@ import {
     setCurrentClient,
 } from '../../actions/account-manager/client-form';
 
-import {setClientFields} from '../../actions/account-manager/client-data';
+import {setClientFields,saveClient} from '../../actions/account-manager/client-data';
 
 const EditExistingClientApp = reduxForm({
     form: 'ExistingClient',
-    fields: ['name', 'description', 'clientIdentifier', 'secret'],
+    fields: ['_id', 'name', 'description', 'clientIdentifier', 'secret'],
 }, state => {
     const clientApp = state.accountManager.clientApp;
     const clients = state.accountManager.data.clients;
@@ -119,6 +119,7 @@ const mapDispatchToProps = dispatch => {
 
         setClientFields: (id,client) => {
             dispatch(setClientFields(id,client));
+            dispatch(saveClient(client));
         }
     };
 };
