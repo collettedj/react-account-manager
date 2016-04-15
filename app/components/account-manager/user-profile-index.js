@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Modal from 'react-modal';
 import EditClientApp from './edit-client-app';
 import ClientList from './client-list';
-import {saveClient} from '../../actions/account-manager/client-data';
+import {createClient} from '../../actions/account-manager/client-data';
 import {
     toggleOpen,
 } from '../../actions/account-manager/add-client-modal';
@@ -96,7 +96,7 @@ const mapDispatchToProps = dispatch => {
         },
         addClient: (client) => {
             // dispatch(addClient(client)); 
-            dispatch(saveClient(client));
+            dispatch(createClient(client));
             dispatch(toggleOpen());
         },
     };

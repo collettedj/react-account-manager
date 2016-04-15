@@ -42,7 +42,7 @@ const data = (state={
                 clients: state.clients.map( c => clientData(c,action))
             };
 
-        case CLIENT_ACTIONS.SAVE_CLIENT_SUCCESS:
+        case CLIENT_ACTIONS.CREATE_CLIENT_SUCCESS:
             return {
                 ...state,
                 clients: [ 

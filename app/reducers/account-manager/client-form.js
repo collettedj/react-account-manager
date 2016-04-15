@@ -12,19 +12,19 @@ const client = (state={
                 ...state,
                 isEditing: !state.isEditing,
             };
-        case DATA_ACTIONS.REQUEST_SAVE_CLIENT:
+        case DATA_ACTIONS.REQUEST_CREATE_CLIENT:
             return {
                 ...state,
                 isRequesting:true,
                 errorMessage:null,
             };
-        case DATA_ACTIONS.SAVE_CLIENT_SUCCESS:
+        case DATA_ACTIONS.CREATE_CLIENT_SUCCESS:
             return {
                 ...state,
                 isRequesting:false,
                 errorMessage:null,
             };
-        case DATA_ACTIONS.SAVE_CLIENT_FAILED:
+        case DATA_ACTIONS.CREATE_CLIENT_FAILED:
             return {
                 ...state,
                 isRequesting:false,

@@ -3,9 +3,9 @@ import ClientRepo from '../../repos/account-manager/client';
 export const ACTIONS = {
     // ADD_CLIENT:"ADD_CLIENT",
     SET_CLIENT_FIELDS:"SET_CLIENT_FIELDS",
-    REQUEST_SAVE_CLIENT:"REQUEST_SAVE_CLIENT",
-    SAVE_CLIENT_SUCCESS:"SAVE_CLIENT_SUCCESS",
-    SAVE_CLIENT_FAILED:"SAVE_CLIENT_FAILED",
+    REQUEST_CREATE_CLIENT:"REQUEST_CREATE_CLIENT",
+    CREATE_CLIENT_SUCCESS:"CREATE_CLIENT_SUCCESS",
+    CREATE_CLIENT_FAILED:"CREATE_CLIENT_FAILED",
 };
 
 // export const addClient = ({
@@ -31,35 +31,35 @@ export const setClientFields = (_id, client) => {
     };
 };
 
-export const requestSaveClient = () => {
+export const requestCreateClient = () => {
     return {
-        type: ACTIONS.REQUEST_SAVE_CLIENT,
+        type: ACTIONS.REQUEST_CREATE_CLIENT,
     };
 };
 
-export const saveClientSuccess = client => {
+export const createClientSuccess = client => {
     return {
-        type: ACTIONS.SAVE_CLIENT_SUCCESS,
+        type: ACTIONS.CREATE_CLIENT_SUCCESS,
         client
     };
 };
 
-export const saveClientFailed = err => {
+export const createClientFailed = err => {
     return {
-        type: ACTIONS.SAVE_CLIENT_FAILED,
+        type: ACTIONS.CREATE_CLIENT_FAILED,
         message: JSON.stringify(err)
     };
 };
 
-export const saveClient = client => {
+export const createClient = client => {
     return dispatch => {
-        dispatch(requestSaveClient());
+        dispatch(requestCreateClient());
         return ClientRepo.create(client)
             .then(result => {
-                dispatch(saveClientSuccess(result.client));
+                dispatch(createClientSuccess(result.client));
             })
             .catch(err => {
-                dispatch(saveClientFailed(err));
+                dispatch(createClientFailed(err));
             });
     };
 };
